@@ -11,14 +11,14 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     title: "Time Overflow: The Idea of Using Time Logging to Boost Productivity",
-    date: "2-8-2025",
+    date: "8th February 2025",
     excerpt: "Time logging is a powerful tool that helps you understand where your time goes. By tracking your daily activities, you can identify time-wasting patterns and make conscious decisions to improve your productivity. Exploring these ideas in details..",
     url: "https://infinitycoder.hashnode.dev/time-overflow-the-idea-of-using-time-logging-to-boost-productivity",
     source: "Hashnode",
   },
   {
     title: "Why I Chose React Native Expo for Time Overflow",
-    date: "12-30-2024",
+    date: "30th December 2024",
     excerpt: "Exploring the decision-making process and benefits of selecting React Native with Expo for mobile app development, including rapid prototyping, cross-platform capabilities, and excellent developer experience.",
     url: "https://infinitycoder.hashnode.dev/why-i-chose-the-react-native-expo-for-my-new-mobile-app",
     source: "Hashnode",
