@@ -20,30 +20,25 @@ export default function Home() {
             >
               Blog
             </Link>
-            {/* <Link
-              href="/projects"
-              className="text-stone-800 hover:text-orange-600 transition-colors font-medium"
-            >
-              Projects
-            </Link>
-            <Link
-              href="/contact"
-              className="text-stone-800 hover:text-orange-600 transition-colors font-medium"
-            >
-              Contact
-            </Link> */}
           </div>
         </div>
       </nav>
-
       {/* Main Content */}
-      <div className="pt-24 px-8">
-        <div className="max-w-6xl mx-auto flex gap-12">
+      <div className="pt-24 px-4 sm:px-8">
+        {" "}
+        {/* Reduced padding on mobile */}
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12">
+          {" "}
+          {/* Stack vertically on mobile */}
           {/* Left Sidebar - Profile */}
-          <aside className="w-64 flex-shrink-0">
-            <div className="sticky top-24">
-              <div className="mb-6">
-                <div className="w-48 h-48 rounded-2xl overflow-hidden border-4 border-stone-800 mb-4">
+          <aside className="w-full md:w-64 flex-shrink-0">
+            {" "}
+            {/* Full width on mobile */}
+            <div className="md:sticky md:top-24">
+              <div className="mb-6 flex flex-col items-center md:items-start">
+                {" "}
+                {/* Center items on mobile */}
+                <div className="w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden border-4 border-stone-800 mb-4">
                   <Image
                     src="/brijesh.jpg"
                     alt="Brijesh Chandrakar"
@@ -135,9 +130,8 @@ export default function Home() {
               </div>
             </div>
           </aside>
-
           {/* Main Content Area */}
-          <div className="flex-1 py-6">
+          <div className="flex-1 py-4 md:py-6">
             <div className="prose prose-stone lg:prose-lg">
               <h2 className="text-3xl font-bold text-stone-800 mb-6">
                 About Me
@@ -201,7 +195,7 @@ export default function Home() {
                 Featured Projects
               </h2>
               <div className="grid grid-cols-1 gap-6">
-                <div className="bg-white rounded-xl p-6 shadow-lg border border-stone-100">
+                <div className="bg-white rounded-xl p-4 md:p-6 shadow-lg border border-stone-100">
                   <h3 className="text-xl font-bold text-stone-800 mb-2">
                     Time Overflow
                   </h3>
@@ -214,7 +208,9 @@ export default function Home() {
                     lifestyle.
                   </p>
                   <div className="flex flex-col gap-4">
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
+                      {" "}
+                      {/* Allow tags to wrap on mobile */}
                       <span className="px-3 py-1 bg-stone-100 text-stone-600 rounded-full text-sm">
                         React Native (Expo)
                       </span>
