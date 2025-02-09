@@ -205,7 +205,8 @@ export default function Home() {
                     aware of their time usage and helps them to plan their day
                     better. The idea is to make users conscious of their
                     wasteful time usage and move them towards more productive
-                    lifestyle.
+                    lifestyle. The app is currently in closed alpha testing and
+                    hopefully will be available on Google Play Store soon.
                   </p>
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-wrap gap-2">
