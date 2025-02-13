@@ -1,9 +1,34 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Home() {
+  // Scroll-triggered animation for sections
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll(".fade-in-section").forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-100">
+    <main className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-100 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="animated-background"></div>
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-sm border-b border-stone-200 z-50">
         <div className="max-w-6xl mx-auto px-8 py-4">
@@ -23,22 +48,16 @@ export default function Home() {
           </div>
         </div>
       </nav>
+
       {/* Main Content */}
       <div className="pt-24 px-4 sm:px-8">
-        {" "}
-        {/* Reduced padding on mobile */}
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12">
-          {" "}
-          {/* Stack vertically on mobile */}
           {/* Left Sidebar - Profile */}
           <aside className="w-full md:w-64 flex-shrink-0">
-            {" "}
-            {/* Full width on mobile */}
             <div className="md:sticky md:top-24">
               <div className="mb-6 flex flex-col items-center md:items-start">
-                {" "}
-                {/* Center items on mobile */}
-                <div className="w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden border-4 border-stone-800 mb-4">
+                {/* Profile Picture with Hover Animation */}
+                <div className="w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden border-4 border-stone-800 mb-4 profile-picture">
                   <Image
                     src="/brijesh.jpg"
                     alt="Brijesh Chandrakar"
@@ -50,7 +69,8 @@ export default function Home() {
                 <h1 className="text-2xl font-bold text-stone-800">
                   Brijesh Chandrakar
                 </h1>
-                <p className="text-lg text-stone-600 font-medium">
+                {/* Typing Animation for Tagline */}
+                <p className="text-lg text-stone-600 font-medium typing-animation">
                   योगः कर्मसु कौशलम्
                 </p>
               </div>
@@ -78,6 +98,7 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Social Links */}
               <div className="mt-8 flex space-x-4">
                 <a
                   href="https://github.com/brijeshc"
@@ -130,13 +151,15 @@ export default function Home() {
               </div>
             </div>
           </aside>
+
           {/* Main Content Area */}
           <div className="flex-1 py-4 md:py-6">
             <div className="prose prose-stone lg:prose-lg">
-              <h2 className="text-3xl font-bold text-stone-800 mb-6">
+              {/* About Me Section with Fade-In Animation */}
+              <h2 className="text-3xl font-bold text-stone-800 mb-6 fade-in-section">
                 About Me
               </h2>
-              <p className="text-lg text-stone-600 mb-8">
+              <p className="text-lg text-stone-600 mb-8 fade-in-section">
                 I&apos;m a full stack developer at{" "}
                 <a
                   href="https://www.cornerstoneondemand.com"
@@ -190,11 +213,79 @@ export default function Home() {
                 10+ treks/adventure trips. My hobbies include reading, writing,
                 football, chess and cooking.
               </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <h4 className="font-bold text-stone-800">Tech Stack</h4>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      React Native
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      .NET
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      React
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      MS SQL
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                     TypeScript
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                     Microservices
+                    </span>
+                    {/* Add more technologies */}
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <h4 className="font-bold text-stone-800">
+                    Reading Interests
+                  </h4>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      Hindu Philosophy
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      History
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      Science
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      Non-Fiction
+                    </span>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <h4 className="font-bold text-stone-800">
+                    Random likes
+                  </h4>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      Cristiano Ronaldo
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      Kumar Sanu
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      Dalli Rajhara
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      Himalaya
+                    </span>
+                    <span className="px-2 py-1 bg-stone-100 rounded-full text-sm">
+                      Chawal Roti
+                    </span>
+                  </div>
+                </div>
+              </div>
 
-              <h2 className="text-3xl font-bold text-stone-800 mb-6">
+              {/* Featured Projects Section */}
+              <h2 className="text-3xl font-bold text-stone-800 mb-6 fade-in-section">
                 Featured Projects
               </h2>
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-6 fade-in-section">
                 <div className="bg-white rounded-xl p-4 md:p-6 shadow-lg border border-stone-100">
                   <h3 className="text-xl font-bold text-stone-800 mb-2">
                     Time Overflow
@@ -210,8 +301,6 @@ export default function Home() {
                   </p>
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-wrap gap-2">
-                      {" "}
-                      {/* Allow tags to wrap on mobile */}
                       <span className="px-3 py-1 bg-stone-100 text-stone-600 rounded-full text-sm">
                         React Native (Expo)
                       </span>
@@ -237,6 +326,16 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Cultural Footer */}
+      <footer className="mt-12 py-6 bg-stone-800 text-white text-center">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-sm">
+            &quot;सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामयाः&quot; <br />
+            May all be happy, may all be free from illness.
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
