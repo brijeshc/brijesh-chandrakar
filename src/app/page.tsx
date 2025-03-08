@@ -313,8 +313,7 @@ export default function Home() {
                     aware of their time usage and helps them to plan their day
                     better. The idea is to make users conscious of their
                     wasteful time usage and move them towards more productive
-                    lifestyle. The app is currently in closed alpha testing and
-                    hopefully will be available on Google Play Store soon.
+                    lifestyle. The app is now available on Google Play Store.
                   </p>
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-wrap gap-2">
@@ -328,14 +327,24 @@ export default function Home() {
                         Google Play Console
                       </span>
                     </div>
-                    <a
-                      href="https://time-overflow.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-orange-600 hover:text-orange-700 font-medium"
-                    >
-                      Project website →
-                    </a>
+                    <div className="flex flex-col gap-2">
+                      <a
+                        href="https://play.google.com/store/apps/details?id=com.timeoverflow.app&pli=1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-orange-600 hover:text-orange-700 font-medium"
+                      >
+                        Download from Google Play Store →
+                      </a>
+                      <a
+                        href="https://time-overflow.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-orange-600 hover:text-orange-700 font-medium"
+                      >
+                        Project website →
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
