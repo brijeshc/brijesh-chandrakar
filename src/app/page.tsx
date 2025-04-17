@@ -179,7 +179,7 @@ export default function Home() {
                 About Me
               </h2>
               <p className="text-lg text-stone-600 mb-8 fade-in-section">
-                I&apos;m a full stack developer at{" "}
+                I&apos;m a full stack software engineer at{" "}
                 <a
                   href="https://www.cornerstoneondemand.com"
                   target="_blank"
@@ -188,7 +188,7 @@ export default function Home() {
                 >
                   Cornerstone OnDemand
                 </a>
-                , working with React Native, React, .NET Core, TypeScript,
+                , working with React Native, React, .NET, TypeScript,
                 JavaScript, MS SQL, microservices, etc. I completed my
                 B.Tech-M.Tech dual degree from the{" "}
                 <a
@@ -219,18 +219,20 @@ export default function Home() {
                   cysteine residues: Implications for the design of
                   metal-binding motifs in proteins
                 </a>
-                . Originally from the beautiful town of Dalli Rajhara (known for
-                iron ore mines) in Chhattisgarh, I now call Durg my home. My
-                interests extend beyond technology - I enjoy reading about
-                history, culture, economics, Hindu philosophy, and classical
-                literature. Family, nature, health, culture and traditions are
-                very important to me. As technology evolves, I maintain a keen
-                interest in new tech developments like AI, new frameworks. This
-                website is build with Next.js, Tailwind CSS which I had never
-                used before. I also like travelling especially trekking. I have
-                extensive trekking experience in the Himalayas where I have done
-                10+ treks/adventure trips. My hobbies include reading, writing,
-                football, chess and cooking.
+                . Originally from the beautiful small town of Dalli Rajhara
+                (known for iron ore mines) in Chhattisgarh, I now call Durg my
+                home. My interests extend beyond technology - I enjoy reading
+                about history, culture, economics, Hindu philosophy, and
+                classical literature. Family, nature, health, culture and
+                traditions are very important to me. As technology evolves, I
+                maintain a keen interest in new tech developments like AI, new
+                frameworks. This website is build with Next.js, Tailwind CSS
+                which I had never used before. One of my major concerns is the
+                negative imapact of technology on human psychology as
+                well as our collective society. 
+                I also like travelling especially trekking. I have extensive trekking experience in the
+                Himalayas where I have done 10+ treks/adventure trips. My
+                hobbies include reading, writing, football, chess and cooking.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-white p-4 rounded-lg shadow">
