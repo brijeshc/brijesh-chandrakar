@@ -210,21 +210,21 @@ export default function Home() {
                 Projects
               </h2>
               
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 lg:p-10 shadow-sm border border-sandstone-200 hover:shadow-md transition-all group">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-sm border border-sandstone-200 hover:shadow-md transition-all group">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-4">
                   <h3 className="text-2xl font-serif font-bold text-charcoal-900 group-hover:text-saffron-600 transition-colors">
                     Time Overflow
                   </h3>
                   <span className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider rounded-md border border-emerald-100">Live on Play Store</span>
                 </div>
                 
-                <p className="text-charcoal-800 mb-8 text-lg leading-relaxed">
+                <p className="text-charcoal-800 mb-6 text-lg leading-relaxed">
                   A mobile application designed to help users log the time they spend across various activities. It brings awareness to daily time usage, gently steering users away from wasteful habits and towards a more conscious, productive, and balanced lifestyle.
                 </p>
                 
-                <div className="flex flex-wrap gap-2.5 mb-8">
-                  <span className="px-3 py-1.5 text-xs font-bold bg-sandstone-100 text-charcoal-600 rounded-md tracking-wide">React Native (Expo)</span>
-                  <span className="px-3 py-1.5 text-xs font-bold bg-sandstone-100 text-charcoal-600 rounded-md tracking-wide">Android Studio</span>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 text-xs font-bold bg-sandstone-100 text-charcoal-600 rounded-md tracking-wide">React Native (Expo)</span>
+                  <span className="px-3 py-1 text-xs font-bold bg-sandstone-100 text-charcoal-600 rounded-md tracking-wide">Android Studio</span>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -254,15 +254,15 @@ export default function Home() {
       </div>
 
       {/* Cultural Footer */}
-      <footer className="mt-12 py-8 bg-sandstone-100/80 border-t border-sandstone-200 relative z-10 w-full">
+      <footer className="mt-6 py-4 bg-sandstone-100/80 border-t border-sandstone-200 relative z-10 w-full">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-xl md:text-2xl font-serif italic text-charcoal-800 mb-3 tracking-wide fade-in-section">
+          <p className="text-lg md:text-xl font-serif italic text-charcoal-800 mb-1 tracking-wide fade-in-section">
             &quot;सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामयाः&quot;
           </p>
-          <p className="text-sm font-medium text-charcoal-600 tracking-wider uppercase fade-in-section" style={{ animationDelay: '100ms' }}>
+          <p className="text-[10px] md:text-xs font-medium text-charcoal-600 tracking-wider uppercase fade-in-section mb-2" style={{ animationDelay: '100ms' }}>
             May all be happy, may all be free from illness.
           </p>
-          <div className="mt-6 pt-4 border-t border-sandstone-200/60 text-sm font-medium text-charcoal-500/80">
+          <div className="text-xs font-medium text-charcoal-500/80">
             © {new Date().getFullYear()} Brijesh Chandrakar
           </div>
         </div>

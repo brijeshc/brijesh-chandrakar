@@ -93,15 +93,15 @@ export default function Blog() {
       </div>
       
       {/* Concise Footer */}
-      <footer className="mt-8 py-8 bg-sandstone-100/80 border-t border-sandstone-200 relative z-10 w-full">
+      <footer className="mt-6 py-4 bg-sandstone-100/80 border-t border-sandstone-200 relative z-10 w-full">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-xl font-serif italic text-charcoal-800 mb-2 tracking-wide">
+          <p className="text-lg md:text-xl font-serif italic text-charcoal-800 mb-1 tracking-wide">
             &quot;सर्वे भवन्तु सुखिनः, सर्वे सन्तु निरामयाः&quot;
           </p>
-          <p className="text-xs font-medium text-charcoal-600 tracking-wider uppercase">
+          <p className="text-[10px] md:text-xs font-medium text-charcoal-600 tracking-wider uppercase mb-2">
             May all be happy, may all be free from illness.
           </p>
-          <div className="mt-6 pt-4 border-t border-sandstone-200/60 text-xs font-medium text-charcoal-500/80">
+          <div className="text-xs font-medium text-charcoal-500/80">
             © {new Date().getFullYear()} Brijesh Chandrakar
           </div>
         </div>
