@@ -1,344 +1,1205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brijesh Chandrakar — योगः कर्मसु कौशलम्</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0b0a16;
-      --surface: #0f0e1c;
-      --accent: #c49040;
-      --accent-d: #5c4222;
-      --text: #bab2a0;
-      --text-d: #4e4840;
-      --line: #201e3a;
-      --sil: #0d0c1c;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', Georgia, serif; overflow-x: hidden; }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Brijesh Chandrakar — योगः कर्मसु कौशलम्</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            :root {
+                --bg: #0b0a16;
+                --surface: #0f0e1c;
+                --accent: #c49040;
+                --accent-d: #5c4222;
+                --text: #bab2a0;
+                --text-d: #4e4840;
+                --line: #201e3a;
+                --sil: #0d0c1c;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                background: var(--bg);
+                color: var(--text);
+                font-family: "Cormorant Garamond", Georgia, serif;
+                overflow-x: hidden;
+            }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      padding: 1.4rem 3.5rem;
-      display: flex; justify-content: space-between; align-items: center;
-      background: linear-gradient(to bottom, rgba(11,10,22,0.88) 0%, transparent 100%);
-    }
-    .nav-name { font-size: 0.66rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--text-d); text-decoration: none; transition: color .4s; }
-    .nav-name:hover { color: var(--accent); }
-    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
-    .nav-links a { font-size: 0.63rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--text-d); text-decoration: none; transition: color .4s; }
-    .nav-links a:hover { color: var(--accent); }
+            /* NAV */
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 200;
+                padding: 1.4rem 3.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(11, 10, 22, 0.88) 0%,
+                    transparent 100%
+                );
+            }
+            .nav-name {
+                font-size: 0.66rem;
+                letter-spacing: 0.42em;
+                text-transform: uppercase;
+                color: var(--text-d);
+                text-decoration: none;
+                transition: color 0.4s;
+            }
+            .nav-name:hover {
+                color: var(--accent);
+            }
+            .nav-links {
+                display: flex;
+                gap: 2.8rem;
+                list-style: none;
+            }
+            .nav-links a {
+                font-size: 0.63rem;
+                letter-spacing: 0.32em;
+                text-transform: uppercase;
+                color: var(--text-d);
+                text-decoration: none;
+                transition: color 0.4s;
+            }
+            .nav-links a:hover {
+                color: var(--accent);
+            }
 
-    /* HERO */
-    .hero { position: relative; height: 100vh; min-height: 640px; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 11vh; }
-    .hero-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+            /* HERO */
+            .hero {
+                position: relative;
+                height: 100vh;
+                min-height: 640px;
+                overflow: hidden;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                padding-bottom: 11vh;
+            }
+            .hero-scene {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+            }
 
-    .hero-content { position: relative; z-index: 10; text-align: center; will-change: transform, opacity; }
-    .h-eye  { font-size: 0.64rem; letter-spacing: 0.48em; text-transform: uppercase; color: var(--text-d); margin-bottom: 1.3rem; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
-    .h-name { font-size: clamp(2.6rem, 5.2vw, 5.2rem); font-weight: 300; letter-spacing: 0.14em; color: #d5cdbf; line-height: 1; margin-bottom: 1rem; opacity: 0; animation: fadeUp 1.1s 0.9s forwards; }
-    .h-san  { font-family: 'Noto Serif Devanagari', serif; font-size: clamp(1rem, 1.4vw, 1.15rem); color: var(--accent); font-weight: 300; letter-spacing: 0.05em; opacity: 0; animation: fadeUp 1s 1.2s forwards; }
-    .h-gls  { font-size: 0.74rem; letter-spacing: 0.18em; font-style: italic; color: var(--text-d); margin-top: 0.55rem; opacity: 0; animation: fadeUp 1s 1.45s forwards; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+            .hero-content {
+                position: relative;
+                z-index: 10;
+                text-align: center;
+                will-change: transform, opacity;
+            }
+            .h-eye {
+                font-size: 0.64rem;
+                letter-spacing: 0.48em;
+                text-transform: uppercase;
+                color: var(--text-d);
+                margin-bottom: 1.3rem;
+                opacity: 0;
+                animation: fadeUp 1s 0.6s forwards;
+            }
+            .h-name {
+                font-size: clamp(2.6rem, 5.2vw, 5.2rem);
+                font-weight: 300;
+                letter-spacing: 0.14em;
+                color: #d5cdbf;
+                line-height: 1;
+                margin-bottom: 1rem;
+                opacity: 0;
+                animation: fadeUp 1.1s 0.9s forwards;
+            }
+            .h-san {
+                font-family: "Noto Serif Devanagari", serif;
+                font-size: clamp(1rem, 1.4vw, 1.15rem);
+                color: var(--accent);
+                font-weight: 300;
+                letter-spacing: 0.05em;
+                opacity: 0;
+                animation: fadeUp 1s 1.2s forwards;
+            }
+            .h-gls {
+                font-size: 0.74rem;
+                letter-spacing: 0.18em;
+                font-style: italic;
+                color: var(--text-d);
+                margin-top: 0.55rem;
+                opacity: 0;
+                animation: fadeUp 1s 1.45s forwards;
+            }
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(22px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
 
-    .scroll-cue { position: absolute; bottom: 2.8rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .55rem; opacity: 0; animation: cueFade .9s 2.2s forwards, cueDrift 2.6s 3.2s ease-in-out infinite; }
-    .scroll-cue span { font-size: 0.57rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--text-d); }
-    @keyframes cueFade  { to { opacity: 1; } }
-    @keyframes cueDrift { 0%,100% { transform: translateX(-50%) translateY(0); opacity: .38; } 50% { transform: translateX(-50%) translateY(9px); opacity: .62; } }
+            .scroll-cue {
+                position: absolute;
+                bottom: 2.8rem;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.55rem;
+                opacity: 0;
+                animation:
+                    cueFade 0.9s 2.2s forwards,
+                    cueDrift 2.6s 3.2s ease-in-out infinite;
+            }
+            .scroll-cue span {
+                font-size: 0.57rem;
+                letter-spacing: 0.38em;
+                text-transform: uppercase;
+                color: var(--text-d);
+            }
+            @keyframes cueFade {
+                to {
+                    opacity: 1;
+                }
+            }
+            @keyframes cueDrift {
+                0%,
+                100% {
+                    transform: translateX(-50%) translateY(0);
+                    opacity: 0.38;
+                }
+                50% {
+                    transform: translateX(-50%) translateY(9px);
+                    opacity: 0.62;
+                }
+            }
 
-    /* CONTENT */
-    .wrap { max-width: 750px; margin: 0 auto; padding: 7.5rem 2.5rem; position: relative; }
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1.1s ease, transform 1.1s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-    .stagger > * { opacity: 0; transform: translateY(22px); transition: opacity .9s ease, transform .9s ease; }
-    .stagger.in > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
-    .stagger.in > *:nth-child(2) { opacity:1; transform:none; transition-delay:.18s; }
-    .stagger.in > *:nth-child(3) { opacity:1; transform:none; transition-delay:.36s; }
-    .stagger.in > *:nth-child(4) { opacity:1; transform:none; transition-delay:.54s; }
-    .stagger.in > *:nth-child(5) { opacity:1; transform:none; transition-delay:.72s; }
+            /* CONTENT */
+            .wrap {
+                max-width: 750px;
+                margin: 0 auto;
+                padding: 7.5rem 2.5rem;
+                position: relative;
+            }
+            .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition:
+                    opacity 1.1s ease,
+                    transform 1.1s ease;
+            }
+            .reveal.in {
+                opacity: 1;
+                transform: none;
+            }
+            .stagger > * {
+                opacity: 0;
+                transform: translateY(22px);
+                transition:
+                    opacity 0.9s ease,
+                    transform 0.9s ease;
+            }
+            .stagger.in > *:nth-child(1) {
+                opacity: 1;
+                transform: none;
+                transition-delay: 0s;
+            }
+            .stagger.in > *:nth-child(2) {
+                opacity: 1;
+                transform: none;
+                transition-delay: 0.18s;
+            }
+            .stagger.in > *:nth-child(3) {
+                opacity: 1;
+                transform: none;
+                transition-delay: 0.36s;
+            }
+            .stagger.in > *:nth-child(4) {
+                opacity: 1;
+                transform: none;
+                transition-delay: 0.54s;
+            }
+            .stagger.in > *:nth-child(5) {
+                opacity: 1;
+                transform: none;
+                transition-delay: 0.72s;
+            }
 
-    .lbl { font-size: 0.61rem; letter-spacing: 0.48em; text-transform: uppercase; color: var(--accent-d); margin-bottom: 1.8rem; }
-    h2 { font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 300; font-style: italic; color: #cdc5b3; line-height: 1.22; margin-bottom: 2.8rem; }
-    p { font-size: 1.08rem; font-weight: 300; line-height: 1.9; color: var(--text); margin-bottom: 1.7rem; text-wrap: pretty; }
-    p:last-child { margin-bottom: 0; }
-    .hl { color: var(--accent); font-style: italic; }
+            .lbl {
+                font-size: 0.61rem;
+                letter-spacing: 0.48em;
+                text-transform: uppercase;
+                color: var(--accent-d);
+                margin-bottom: 1.8rem;
+            }
+            h2 {
+                font-size: clamp(2rem, 3.2vw, 3rem);
+                font-weight: 300;
+                font-style: italic;
+                color: #cdc5b3;
+                line-height: 1.22;
+                margin-bottom: 2.8rem;
+            }
+            p {
+                font-size: 1.08rem;
+                font-weight: 300;
+                line-height: 1.9;
+                color: var(--text);
+                margin-bottom: 1.7rem;
+                text-wrap: pretty;
+            }
+            p:last-child {
+                margin-bottom: 0;
+            }
+            .hl {
+                color: var(--accent);
+                font-style: italic;
+            }
 
-    /* DIVIDER */
-    .div-wrap { display: flex; align-items: center; justify-content: center; gap: 1.4rem; padding: .5rem 2.5rem; }
-    .div-line  { height: 1px; background: var(--line); width: 120px; flex-shrink: 0; }
+            /* DIVIDER */
+            .div-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1.4rem;
+                padding: 0.5rem 2.5rem;
+            }
+            .div-line {
+                height: 1px;
+                background: var(--line);
+                width: 120px;
+                flex-shrink: 0;
+            }
 
-    /* TAGS */
-    .tags { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 2rem; }
-    .tag  { padding: .28rem .85rem; border: 1px solid var(--line); font-size: .72rem; letter-spacing: .18em; color: var(--text-d); }
+            /* TAGS */
+            .tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.65rem;
+                margin-top: 2rem;
+            }
+            .tag {
+                padding: 0.28rem 0.85rem;
+                border: 1px solid var(--line);
+                font-size: 0.72rem;
+                letter-spacing: 0.18em;
+                color: var(--text-d);
+            }
 
-    /* PROJECT CARD */
-    .p-card { border: 1px solid var(--line); padding: 2.8rem; position: relative; margin-top: 1.5rem; }
-    .p-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--surface) 0%, transparent 55%); pointer-events: none; }
-    .p-name { font-size: 1.55rem; font-weight: 300; color: #cdc5b3; line-height: 1.3; margin-bottom: 1rem; }
-    .p-desc { font-size: 1rem; font-weight: 300; color: var(--text); line-height: 1.82; margin-bottom: 1.6rem; }
-    .p-link { font-size: .68rem; letter-spacing: .32em; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: opacity .3s; }
-    .p-link:hover { opacity: .7; }
+            /* PROJECT CARD */
+            .p-card {
+                border: 1px solid var(--line);
+                padding: 2.8rem;
+                position: relative;
+                margin-top: 1.5rem;
+            }
+            .p-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    135deg,
+                    var(--surface) 0%,
+                    transparent 55%
+                );
+                pointer-events: none;
+            }
+            .p-name {
+                font-size: 1.55rem;
+                font-weight: 300;
+                color: #cdc5b3;
+                line-height: 1.3;
+                margin-bottom: 1rem;
+            }
+            .p-desc {
+                font-size: 1rem;
+                font-weight: 300;
+                color: var(--text);
+                line-height: 1.82;
+                margin-bottom: 1.6rem;
+            }
+            .p-link {
+                font-size: 0.68rem;
+                letter-spacing: 0.32em;
+                text-transform: uppercase;
+                color: var(--accent);
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+            .p-link:hover {
+                opacity: 0.7;
+            }
 
-    /* CORNER ORNAMENT */
-    .cor { position: absolute; pointer-events: none; }
-    .cor.tl { top: 3rem; left: -1rem; }
-    .cor.tr { top: 3rem; right: -1rem; transform: scaleX(-1); }
-    .cor.bl { bottom: 3rem; left: -1rem; transform: scaleY(-1); }
-    .cor.br { bottom: 3rem; right: -1rem; transform: scale(-1,-1); }
+            /* CORNER ORNAMENT */
+            .cor {
+                position: absolute;
+                pointer-events: none;
+            }
+            .cor.tl {
+                top: 3rem;
+                left: -1rem;
+            }
+            .cor.tr {
+                top: 3rem;
+                right: -1rem;
+                transform: scaleX(-1);
+            }
+            .cor.bl {
+                bottom: 3rem;
+                left: -1rem;
+                transform: scaleY(-1);
+            }
+            .cor.br {
+                bottom: 3rem;
+                right: -1rem;
+                transform: scale(-1, -1);
+            }
 
-    /* BG MOTIF */
-    .bg-motif { position: absolute; pointer-events: none; opacity: .025; }
+            /* BG MOTIF */
+            .bg-motif {
+                position: absolute;
+                pointer-events: none;
+                opacity: 0.025;
+            }
 
-    /* FOOTER */
-    footer { text-align: center; padding: 5.5rem 2rem 4rem; border-top: 1px solid var(--line); }
-    .f-icon { margin-bottom: 2rem; opacity: .28; }
-    .f-name { font-size: .68rem; letter-spacing: .42em; text-transform: uppercase; color: var(--text-d); margin-bottom: .9rem; }
-    .f-san  { font-family: 'Noto Serif Devanagari', serif; font-size: .95rem; color: var(--accent-d); font-weight: 300; }
-    .f-place{ font-size: .62rem; letter-spacing: .28em; color: var(--text-d); margin-top: 2.5rem; opacity: .45; }
-  </style>
-</head>
-<body>
+            /* FOOTER */
+            footer {
+                text-align: center;
+                padding: 5.5rem 2rem 4rem;
+                border-top: 1px solid var(--line);
+            }
+            .f-icon {
+                margin-bottom: 2rem;
+                opacity: 0.28;
+            }
+            .f-name {
+                font-size: 0.68rem;
+                letter-spacing: 0.42em;
+                text-transform: uppercase;
+                color: var(--text-d);
+                margin-bottom: 0.9rem;
+            }
+            .f-san {
+                font-family: "Noto Serif Devanagari", serif;
+                font-size: 0.95rem;
+                color: var(--accent-d);
+                font-weight: 300;
+            }
+            .f-place {
+                font-size: 0.62rem;
+                letter-spacing: 0.28em;
+                color: var(--text-d);
+                margin-top: 2.5rem;
+                opacity: 0.45;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- ══ SHARED SVG DEFS (corner symbol + lotus divider) ══ -->
+        <svg
+            style="position: absolute; width: 0; height: 0; overflow: hidden"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <defs>
+                <!-- Hoysala corner ornament: layered moldings + diamond frieze + 8-petal lotus + scrolling vine -->
+                <symbol id="hcor" viewBox="0 0 82 82">
+                    <!-- Outer primary border lines -->
+                    <line
+                        x1="0"
+                        y1="2"
+                        x2="82"
+                        y2="2"
+                        stroke="#201e3a"
+                        stroke-width="1.6"
+                    />
+                    <line
+                        x1="2"
+                        y1="0"
+                        x2="2"
+                        y2="82"
+                        stroke="#201e3a"
+                        stroke-width="1.6"
+                    />
+                    <!-- Second molding -->
+                    <line
+                        x1="0"
+                        y1="7"
+                        x2="82"
+                        y2="7"
+                        stroke="#201e3a"
+                        stroke-width=".8"
+                    />
+                    <line
+                        x1="7"
+                        y1="0"
+                        x2="7"
+                        y2="82"
+                        stroke="#201e3a"
+                        stroke-width=".8"
+                    />
+                    <!-- Third molding -->
+                    <line
+                        x1="0"
+                        y1="12"
+                        x2="82"
+                        y2="12"
+                        stroke="#201e3a"
+                        stroke-width=".45"
+                        opacity=".7"
+                    />
+                    <line
+                        x1="12"
+                        y1="0"
+                        x2="12"
+                        y2="82"
+                        stroke="#201e3a"
+                        stroke-width=".45"
+                        opacity=".7"
+                    />
+                    <!-- Fourth fine line -->
+                    <line
+                        x1="0"
+                        y1="16"
+                        x2="82"
+                        y2="16"
+                        stroke="#201e3a"
+                        stroke-width=".3"
+                        opacity=".45"
+                    />
+                    <line
+                        x1="16"
+                        y1="0"
+                        x2="16"
+                        y2="82"
+                        stroke="#201e3a"
+                        stroke-width=".3"
+                        opacity=".45"
+                    />
 
-<!-- ══ SHARED SVG DEFS (corner symbol + lotus divider) ══ -->
-<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <!-- Hoysala corner ornament: layered moldings + diamond frieze + 8-petal lotus + scrolling vine -->
-    <symbol id="hcor" viewBox="0 0 82 82">
-      <!-- Outer primary border lines -->
-      <line x1="0"  y1="2"  x2="82" y2="2"  stroke="#201e3a" stroke-width="1.6"/>
-      <line x1="2"  y1="0"  x2="2"  y2="82" stroke="#201e3a" stroke-width="1.6"/>
-      <!-- Second molding -->
-      <line x1="0"  y1="7"  x2="82" y2="7"  stroke="#201e3a" stroke-width=".8"/>
-      <line x1="7"  y1="0"  x2="7"  y2="82" stroke="#201e3a" stroke-width=".8"/>
-      <!-- Third molding -->
-      <line x1="0"  y1="12" x2="82" y2="12" stroke="#201e3a" stroke-width=".45" opacity=".7"/>
-      <line x1="12" y1="0"  x2="12" y2="82" stroke="#201e3a" stroke-width=".45" opacity=".7"/>
-      <!-- Fourth fine line -->
-      <line x1="0"  y1="16" x2="82" y2="16" stroke="#201e3a" stroke-width=".3"  opacity=".45"/>
-      <line x1="16" y1="0"  x2="16" y2="82" stroke="#201e3a" stroke-width=".3"  opacity=".45"/>
+                    <!-- Diamond bead frieze on horizontal border (y=2–7 band) -->
+                    <path d="M21,4.5 L23,2 L25,4.5 L23,7 Z" fill="#2e2a52" />
+                    <path d="M31,4.5 L33,2 L35,4.5 L33,7 Z" fill="#2e2a52" />
+                    <path d="M41,4.5 L43,2 L45,4.5 L43,7 Z" fill="#2e2a52" />
+                    <path d="M51,4.5 L53,2 L55,4.5 L53,7 Z" fill="#2e2a52" />
+                    <path d="M61,4.5 L63,2 L65,4.5 L63,7 Z" fill="#2e2a52" />
+                    <path d="M71,4.5 L73,2 L75,4.5 L73,7 Z" fill="#2e2a52" />
 
-      <!-- Diamond bead frieze on horizontal border (y=2–7 band) -->
-      <path d="M21,4.5 L23,2 L25,4.5 L23,7 Z"  fill="#2e2a52"/>
-      <path d="M31,4.5 L33,2 L35,4.5 L33,7 Z"  fill="#2e2a52"/>
-      <path d="M41,4.5 L43,2 L45,4.5 L43,7 Z"  fill="#2e2a52"/>
-      <path d="M51,4.5 L53,2 L55,4.5 L53,7 Z"  fill="#2e2a52"/>
-      <path d="M61,4.5 L63,2 L65,4.5 L63,7 Z"  fill="#2e2a52"/>
-      <path d="M71,4.5 L73,2 L75,4.5 L73,7 Z"  fill="#2e2a52"/>
+                    <!-- Diamond bead frieze on vertical border (x=2–7 band) -->
+                    <path d="M4.5,21 L7,23 L4.5,25 L2,23 Z" fill="#2e2a52" />
+                    <path d="M4.5,31 L7,33 L4.5,35 L2,33 Z" fill="#2e2a52" />
+                    <path d="M4.5,41 L7,43 L4.5,45 L2,43 Z" fill="#2e2a52" />
+                    <path d="M4.5,51 L7,53 L4.5,55 L2,53 Z" fill="#2e2a52" />
+                    <path d="M4.5,61 L7,63 L4.5,65 L2,63 Z" fill="#2e2a52" />
+                    <path d="M4.5,71 L7,73 L4.5,75 L2,73 Z" fill="#2e2a52" />
 
-      <!-- Diamond bead frieze on vertical border (x=2–7 band) -->
-      <path d="M4.5,21 L7,23 L4.5,25 L2,23 Z"  fill="#2e2a52"/>
-      <path d="M4.5,31 L7,33 L4.5,35 L2,33 Z"  fill="#2e2a52"/>
-      <path d="M4.5,41 L7,43 L4.5,45 L2,43 Z"  fill="#2e2a52"/>
-      <path d="M4.5,51 L7,53 L4.5,55 L2,53 Z"  fill="#2e2a52"/>
-      <path d="M4.5,61 L7,63 L4.5,65 L2,63 Z"  fill="#2e2a52"/>
-      <path d="M4.5,71 L7,73 L4.5,75 L2,73 Z"  fill="#2e2a52"/>
+                    <!-- Lotus bud row (inverted points in 2nd band, y=7–12) -->
+                    <path
+                        d="M24,12 L26,7.5 L28,12 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
+                    <path
+                        d="M36,12 L38,7.5 L40,12 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
+                    <path
+                        d="M48,12 L50,7.5 L52,12 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
+                    <path
+                        d="M60,12 L62,7.5 L64,12 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
+                    <path
+                        d="M72,12 L74,7.5 L76,12 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
 
-      <!-- Lotus bud row (inverted points in 2nd band, y=7–12) -->
-      <path d="M24,12 L26,7.5 L28,12 Z" fill="#272450" opacity=".8"/>
-      <path d="M36,12 L38,7.5 L40,12 Z" fill="#272450" opacity=".8"/>
-      <path d="M48,12 L50,7.5 L52,12 Z" fill="#272450" opacity=".8"/>
-      <path d="M60,12 L62,7.5 L64,12 Z" fill="#272450" opacity=".8"/>
-      <path d="M72,12 L74,7.5 L76,12 Z" fill="#272450" opacity=".8"/>
+                    <!-- Vertical lotus buds -->
+                    <path
+                        d="M12,24 L7.5,26 L12,28 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
+                    <path
+                        d="M12,36 L7.5,38 L12,40 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
+                    <path
+                        d="M12,48 L7.5,50 L12,52 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
+                    <path
+                        d="M12,60 L7.5,62 L12,64 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
+                    <path
+                        d="M12,72 L7.5,74 L12,76 Z"
+                        fill="#272450"
+                        opacity=".8"
+                    />
 
-      <!-- Vertical lotus buds -->
-      <path d="M12,24 L7.5,26 L12,28 Z" fill="#272450" opacity=".8"/>
-      <path d="M12,36 L7.5,38 L12,40 Z" fill="#272450" opacity=".8"/>
-      <path d="M12,48 L7.5,50 L12,52 Z" fill="#272450" opacity=".8"/>
-      <path d="M12,60 L7.5,62 L12,64 Z" fill="#272450" opacity=".8"/>
-      <path d="M12,72 L7.5,74 L12,76 Z" fill="#272450" opacity=".8"/>
+                    <!-- 8-petal lotus at corner -->
+                    <circle
+                        cx="20"
+                        cy="20"
+                        r="14"
+                        fill="none"
+                        stroke="#201e3a"
+                        stroke-width=".9"
+                    />
+                    <circle
+                        cx="20"
+                        cy="20"
+                        r="10"
+                        fill="none"
+                        stroke="#201e3a"
+                        stroke-width=".5"
+                    />
+                    <!-- Cardinal petals -->
+                    <path
+                        d="M20,6  Q23.5,13 20,20 Q16.5,13 20,6  Z"
+                        fill="#201e3a"
+                    />
+                    <path
+                        d="M34,20 Q27,23.5 20,20 Q27,16.5 34,20 Z"
+                        fill="#201e3a"
+                    />
+                    <path
+                        d="M20,34 Q16.5,27 20,20 Q23.5,27 20,34 Z"
+                        fill="#201e3a"
+                        opacity=".65"
+                    />
+                    <path
+                        d="M6,20  Q13,16.5 20,20 Q13,23.5 6,20  Z"
+                        fill="#201e3a"
+                        opacity=".65"
+                    />
+                    <!-- Diagonal petals -->
+                    <path
+                        d="M30,10 Q24,15 20,20 Q20,14 30,10 Z"
+                        fill="#2a2848"
+                    />
+                    <path
+                        d="M30,30 Q25,24 20,20 Q26,20 30,30 Z"
+                        fill="#2a2848"
+                    />
+                    <path
+                        d="M10,30 Q15,24 20,20 Q14,24 10,30 Z"
+                        fill="#2a2848"
+                    />
+                    <path
+                        d="M10,10 Q15,15 20,20 Q14,14 10,10 Z"
+                        fill="#2a2848"
+                    />
+                    <!-- Center -->
+                    <circle cx="20" cy="20" r="3.8" fill="#2e2a52" />
+                    <circle cx="20" cy="20" r="2" fill="#38356a" />
 
-      <!-- 8-petal lotus at corner -->
-      <circle cx="20" cy="20" r="14" fill="none" stroke="#201e3a" stroke-width=".9"/>
-      <circle cx="20" cy="20" r="10" fill="none" stroke="#201e3a" stroke-width=".5"/>
-      <!-- Cardinal petals -->
-      <path d="M20,6  Q23.5,13 20,20 Q16.5,13 20,6  Z" fill="#201e3a"/>
-      <path d="M34,20 Q27,23.5 20,20 Q27,16.5 34,20 Z" fill="#201e3a"/>
-      <path d="M20,34 Q16.5,27 20,20 Q23.5,27 20,34 Z" fill="#201e3a" opacity=".65"/>
-      <path d="M6,20  Q13,16.5 20,20 Q13,23.5 6,20  Z" fill="#201e3a" opacity=".65"/>
-      <!-- Diagonal petals -->
-      <path d="M30,10 Q24,15 20,20 Q20,14 30,10 Z" fill="#2a2848"/>
-      <path d="M30,30 Q25,24 20,20 Q26,20 30,30 Z" fill="#2a2848"/>
-      <path d="M10,30 Q15,24 20,20 Q14,24 10,30 Z" fill="#2a2848"/>
-      <path d="M10,10 Q15,15 20,20 Q14,14 10,10 Z" fill="#2a2848"/>
-      <!-- Center -->
-      <circle cx="20" cy="20" r="3.8" fill="#2e2a52"/>
-      <circle cx="20" cy="20" r="2"   fill="#38356a"/>
+                    <!-- Scrolling vine / tendril extending inward -->
+                    <path
+                        d="M20,35 Q30,42 34,54"
+                        stroke="#201e3a"
+                        stroke-width="1"
+                        fill="none"
+                    />
+                    <circle
+                        cx="34"
+                        cy="54"
+                        r="3.2"
+                        fill="none"
+                        stroke="#201e3a"
+                        stroke-width=".75"
+                    />
+                    <path
+                        d="M29,50 C24,55 25,62 30,64"
+                        stroke="#201e3a"
+                        stroke-width=".6"
+                        fill="none"
+                    />
+                    <circle
+                        cx="30"
+                        cy="64"
+                        r="1.6"
+                        fill="none"
+                        stroke="#201e3a"
+                        stroke-width=".6"
+                    />
 
-      <!-- Scrolling vine / tendril extending inward -->
-      <path d="M20,35 Q30,42 34,54" stroke="#201e3a" stroke-width="1" fill="none"/>
-      <circle cx="34" cy="54" r="3.2" fill="none" stroke="#201e3a" stroke-width=".75"/>
-      <path d="M29,50 C24,55 25,62 30,64"  stroke="#201e3a" stroke-width=".6" fill="none"/>
-      <circle cx="30" cy="64" r="1.6" fill="none" stroke="#201e3a" stroke-width=".6"/>
+                    <path
+                        d="M35,20 Q42,30 54,34"
+                        stroke="#201e3a"
+                        stroke-width="1"
+                        fill="none"
+                    />
+                    <circle
+                        cx="54"
+                        cy="34"
+                        r="3.2"
+                        fill="none"
+                        stroke="#201e3a"
+                        stroke-width=".75"
+                    />
+                    <path
+                        d="M50,29 C55,24 62,25 64,30"
+                        stroke="#201e3a"
+                        stroke-width=".6"
+                        fill="none"
+                    />
+                    <circle
+                        cx="64"
+                        cy="30"
+                        r="1.6"
+                        fill="none"
+                        stroke="#201e3a"
+                        stroke-width=".6"
+                    />
 
-      <path d="M35,20 Q42,30 54,34" stroke="#201e3a" stroke-width="1" fill="none"/>
-      <circle cx="54" cy="34" r="3.2" fill="none" stroke="#201e3a" stroke-width=".75"/>
-      <path d="M50,29 C55,24 62,25 64,30"  stroke="#201e3a" stroke-width=".6" fill="none"/>
-      <circle cx="64" cy="30" r="1.6" fill="none" stroke="#201e3a" stroke-width=".6"/>
+                    <!-- Fine cross-hatch fill in corner square (Hoysala texture) -->
+                    <line
+                        x1="16"
+                        y1="2"
+                        x2="2"
+                        y2="16"
+                        stroke="#201e3a"
+                        stroke-width=".35"
+                        opacity=".4"
+                    />
+                </symbol>
 
-      <!-- Fine cross-hatch fill in corner square (Hoysala texture) -->
-      <line x1="16" y1="2" x2="2" y2="16" stroke="#201e3a" stroke-width=".35" opacity=".4"/>
-    </symbol>
+                <!-- Lotus divider motif -->
+                <symbol id="ldiv" viewBox="0 0 32 32">
+                    <path
+                        d="M16,3   Q20,10.5 16,16 Q12,10.5 16,3   Z"
+                        fill="#201e3a"
+                    />
+                    <path
+                        d="M29,16  Q21.5,20 16,16 Q21.5,12 29,16  Z"
+                        fill="#201e3a"
+                    />
+                    <path
+                        d="M16,29  Q12,21.5 16,16 Q20,21.5 16,29  Z"
+                        fill="#201e3a"
+                        opacity=".7"
+                    />
+                    <path
+                        d="M3,16   Q10.5,12 16,16 Q10.5,20 3,16   Z"
+                        fill="#201e3a"
+                        opacity=".7"
+                    />
+                    <path
+                        d="M24,8   Q22,14.5 16,16 Q17,9.5 24,8  Z"
+                        fill="#27244e"
+                    />
+                    <path
+                        d="M24,24  Q17.5,22 16,16 Q22,17 24,24  Z"
+                        fill="#27244e"
+                    />
+                    <path
+                        d="M8,24   Q10,17.5 16,16 Q14,22 8,24   Z"
+                        fill="#27244e"
+                    />
+                    <path
+                        d="M8,8    Q14,10 16,16 Q10,14 8,8      Z"
+                        fill="#27244e"
+                    />
+                    <circle cx="16" cy="16" r="3" fill="#2e2a52" />
+                    <circle cx="16" cy="16" r="1.5" fill="#38356a" />
+                </symbol>
+            </defs>
+        </svg>
 
-    <!-- Lotus divider motif -->
-    <symbol id="ldiv" viewBox="0 0 32 32">
-      <path d="M16,3   Q20,10.5 16,16 Q12,10.5 16,3   Z" fill="#201e3a"/>
-      <path d="M29,16  Q21.5,20 16,16 Q21.5,12 29,16  Z" fill="#201e3a"/>
-      <path d="M16,29  Q12,21.5 16,16 Q20,21.5 16,29  Z" fill="#201e3a" opacity=".7"/>
-      <path d="M3,16   Q10.5,12 16,16 Q10.5,20 3,16   Z" fill="#201e3a" opacity=".7"/>
-      <path d="M24,8   Q22,14.5 16,16 Q17,9.5 24,8  Z" fill="#27244e"/>
-      <path d="M24,24  Q17.5,22 16,16 Q22,17 24,24  Z" fill="#27244e"/>
-      <path d="M8,24   Q10,17.5 16,16 Q14,22 8,24   Z" fill="#27244e"/>
-      <path d="M8,8    Q14,10 16,16 Q10,14 8,8      Z" fill="#27244e"/>
-      <circle cx="16" cy="16" r="3" fill="#2e2a52"/>
-      <circle cx="16" cy="16" r="1.5" fill="#38356a"/>
-    </symbol>
-  </defs>
-</svg>
+        <!-- ══ NAV ══ -->
+        <nav>
+            <a class="nav-name" href="#hero">Brijesh Chandrakar</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#project">Project</a></li>
+                <li>
+                    <a
+                        href="https://brijesh-engineering-notes.brijeshchandrakar.workers.dev"
+                        target="_blank"
+                        rel="noopener"
+                        >Notes ↗</a
+                    >
+                </li>
+            </ul>
+        </nav>
 
-<!-- ══ NAV ══ -->
-<nav>
-  <a class="nav-name" href="#hero">Brijesh Chandrakar</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#project">Project</a></li>
-    <li><a href="https://brijesh-engineering-notes.brijeshchandrakar.workers.dev" target="_blank" rel="noopener">Notes ↗</a></li>
-  </ul>
-</nav>
+        <!-- ══ HERO ══ -->
+        <section class="hero" id="hero">
+            <svg
+                class="hero-scene"
+                viewBox="0 0 1440 900"
+                preserveAspectRatio="xMidYMid slice"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <defs>
+                    <!-- Sky: deep indigo crown → rich violet → warm amber-red horizon -->
+                    <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#08071a" />
+                        <stop offset="30%" stop-color="#0e0c22" />
+                        <stop offset="58%" stop-color="#16102e" />
+                        <stop offset="74%" stop-color="#221638" />
+                        <stop offset="84%" stop-color="#321a38" />
+                        <stop offset="91%" stop-color="#3a1c28" />
+                        <stop offset="96%" stop-color="#381808" />
+                        <stop offset="100%" stop-color="#200e04" />
+                    </linearGradient>
 
-<!-- ══ HERO ══ -->
-<section class="hero" id="hero">
-<svg class="hero-scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <!-- Sky: deep indigo crown → rich violet → warm amber-red horizon -->
-    <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#08071a"/>
-      <stop offset="30%"  stop-color="#0e0c22"/>
-      <stop offset="58%"  stop-color="#16102e"/>
-      <stop offset="74%"  stop-color="#221638"/>
-      <stop offset="84%"  stop-color="#321a38"/>
-      <stop offset="91%"  stop-color="#3a1c28"/>
-      <stop offset="96%"  stop-color="#381808"/>
-      <stop offset="100%" stop-color="#200e04"/>
-    </linearGradient>
+                    <!-- Sun outer bloom -->
+                    <radialGradient id="gBloom" cx="50%" cy="66%" r="56%">
+                        <stop
+                            offset="0%"
+                            stop-color="#d87020"
+                            stop-opacity="0.72"
+                        />
+                        <stop
+                            offset="22%"
+                            stop-color="#a04a14"
+                            stop-opacity="0.45"
+                        />
+                        <stop
+                            offset="48%"
+                            stop-color="#60280a"
+                            stop-opacity="0.20"
+                        />
+                        <stop
+                            offset="75%"
+                            stop-color="#2a100a"
+                            stop-opacity="0.07"
+                        />
+                        <stop
+                            offset="100%"
+                            stop-color="#08051a"
+                            stop-opacity="0"
+                        />
+                    </radialGradient>
 
-    <!-- Sun outer bloom -->
-    <radialGradient id="gBloom" cx="50%" cy="66%" r="56%">
-      <stop offset="0%"   stop-color="#d87020" stop-opacity="0.72"/>
-      <stop offset="22%"  stop-color="#a04a14" stop-opacity="0.45"/>
-      <stop offset="48%"  stop-color="#60280a" stop-opacity="0.20"/>
-      <stop offset="75%"  stop-color="#2a100a" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="#08051a" stop-opacity="0"/>
-    </radialGradient>
+                    <!-- Horizon warmth -->
+                    <radialGradient id="gHorizon" cx="50%" cy="100%" r="60%">
+                        <stop
+                            offset="0%"
+                            stop-color="#7a3810"
+                            stop-opacity="0.30"
+                        />
+                        <stop
+                            offset="55%"
+                            stop-color="#3a1808"
+                            stop-opacity="0.08"
+                        />
+                        <stop
+                            offset="100%"
+                            stop-color="#08051a"
+                            stop-opacity="0"
+                        />
+                    </radialGradient>
 
-    <!-- Horizon warmth -->
-    <radialGradient id="gHorizon" cx="50%" cy="100%" r="60%">
-      <stop offset="0%"   stop-color="#7a3810" stop-opacity="0.30"/>
-      <stop offset="55%"  stop-color="#3a1808" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#08051a" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Peepal leaf: true cordate (heart-lobed) base — wider at top near petiole,
+                    <!-- Peepal leaf: true cordate (heart-lobed) base — wider at top near petiole,
          lobes curving upward, long drip tip at bottom. Midrib + lateral veins. -->
-    <g id="pl">
-      <!-- Body: fill inherits from <use>; faint outline for edge definition -->
-      <path fill="inherit" stroke="#161432" stroke-width="0.45"
-        d="M0,0
+                    <g id="pl">
+                        <!-- Body: fill inherits from <use>; faint outline for edge definition -->
+                        <path
+                            fill="inherit"
+                            stroke="#161432"
+                            stroke-width="0.45"
+                            d="M0,0
            C-7,-5 -15,0 -14,9
            C-13,17 -8,24 -4,30
            L0,37
            L4,30
            C8,24 13,17 14,9
-           C15,0 7,-5 0,0 Z"/>
-      <!-- Midrib (central vein) -->
-      <line x1="0" y1="0"  x2="0"   y2="37" stroke="#161432" stroke-width="0.75" fill="none"/>
-      <!-- Lateral veins -->
-      <line x1="0" y1="6"  x2="-10" y2="14" stroke="#161432" stroke-width="0.4"  fill="none" opacity=".52"/>
-      <line x1="0" y1="6"  x2=" 10" y2="14" stroke="#161432" stroke-width="0.4"  fill="none" opacity=".52"/>
-      <line x1="0" y1="14" x2="-12" y2="21" stroke="#161432" stroke-width="0.38" fill="none" opacity=".42"/>
-      <line x1="0" y1="14" x2=" 12" y2="21" stroke="#161432" stroke-width="0.38" fill="none" opacity=".42"/>
-      <line x1="0" y1="22" x2="-10" y2="28" stroke="#161432" stroke-width="0.32" fill="none" opacity=".32"/>
-      <line x1="0" y1="22" x2=" 10" y2="28" stroke="#161432" stroke-width="0.32" fill="none" opacity=".32"/>
-    </g>
-  </defs>
+           C15,0 7,-5 0,0 Z"
+                        />
+                        <!-- Midrib (central vein) -->
+                        <line
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="37"
+                            stroke="#161432"
+                            stroke-width="0.75"
+                            fill="none"
+                        />
+                        <!-- Lateral veins -->
+                        <line
+                            x1="0"
+                            y1="6"
+                            x2="-10"
+                            y2="14"
+                            stroke="#161432"
+                            stroke-width="0.4"
+                            fill="none"
+                            opacity=".52"
+                        />
+                        <line
+                            x1="0"
+                            y1="6"
+                            x2=" 10"
+                            y2="14"
+                            stroke="#161432"
+                            stroke-width="0.4"
+                            fill="none"
+                            opacity=".52"
+                        />
+                        <line
+                            x1="0"
+                            y1="14"
+                            x2="-12"
+                            y2="21"
+                            stroke="#161432"
+                            stroke-width="0.38"
+                            fill="none"
+                            opacity=".42"
+                        />
+                        <line
+                            x1="0"
+                            y1="14"
+                            x2=" 12"
+                            y2="21"
+                            stroke="#161432"
+                            stroke-width="0.38"
+                            fill="none"
+                            opacity=".42"
+                        />
+                        <line
+                            x1="0"
+                            y1="22"
+                            x2="-10"
+                            y2="28"
+                            stroke="#161432"
+                            stroke-width="0.32"
+                            fill="none"
+                            opacity=".32"
+                        />
+                        <line
+                            x1="0"
+                            y1="22"
+                            x2=" 10"
+                            y2="28"
+                            stroke="#161432"
+                            stroke-width="0.32"
+                            fill="none"
+                            opacity=".32"
+                        />
+                    </g>
+                </defs>
 
-  <!-- SKY -->
-  <rect width="1440" height="900" fill="url(#gSky)"/>
+                <!-- SKY -->
+                <rect width="1440" height="900" fill="url(#gSky)" />
 
-  <!-- HORIZON WARMTH -->
-  <ellipse cx="720" cy="900" rx="750" ry="400" fill="url(#gHorizon)"/>
+                <!-- HORIZON WARMTH -->
+                <ellipse
+                    cx="720"
+                    cy="900"
+                    rx="750"
+                    ry="400"
+                    fill="url(#gHorizon)"
+                />
 
-  <!-- SUN GROUP — moves as user scrolls (JS-controlled) -->
-  <g id="sunG">
-    <!-- Large warm bloom -->
-    <ellipse id="sunBloom" cx="720" cy="660" rx="480" ry="320" fill="url(#gBloom)"/>
-    <!-- Sun disc — clearly visible -->
-    <circle cx="720" cy="680" r="58" fill="#b05818" opacity="0.38"/>
-    <circle cx="720" cy="680" r="44" fill="#cc6c20" opacity="0.62"/>
-    <circle cx="720" cy="680" r="30" fill="#de8030" opacity="0.80"/>
-    <circle cx="720" cy="680" r="18" fill="#f09838" opacity="0.90"/>
-    <circle cx="720" cy="680" r="8"  fill="#f8b850" opacity="0.96"/>
-    <!-- Horizontal horizon glow streak -->
-    <rect x="200" y="674" width="1040" height="12" fill="#c87020" opacity="0.10" rx="6"/>
-    <rect x="400" y="673" width="640"  height="14" fill="#d88030" opacity="0.12" rx="7"/>
-  </g>
+                <!-- SUN GROUP — moves as user scrolls (JS-controlled) -->
+                <g id="sunG">
+                    <!-- Large warm bloom -->
+                    <ellipse
+                        id="sunBloom"
+                        cx="720"
+                        cy="660"
+                        rx="480"
+                        ry="320"
+                        fill="url(#gBloom)"
+                    />
+                    <!-- Sun disc — clearly visible -->
+                    <circle
+                        cx="720"
+                        cy="680"
+                        r="58"
+                        fill="#b05818"
+                        opacity="0.38"
+                    />
+                    <circle
+                        cx="720"
+                        cy="680"
+                        r="44"
+                        fill="#cc6c20"
+                        opacity="0.62"
+                    />
+                    <circle
+                        cx="720"
+                        cy="680"
+                        r="30"
+                        fill="#de8030"
+                        opacity="0.80"
+                    />
+                    <circle
+                        cx="720"
+                        cy="680"
+                        r="18"
+                        fill="#f09838"
+                        opacity="0.90"
+                    />
+                    <circle
+                        cx="720"
+                        cy="680"
+                        r="8"
+                        fill="#f8b850"
+                        opacity="0.96"
+                    />
+                    <!-- Horizontal horizon glow streak -->
+                    <rect
+                        x="200"
+                        y="674"
+                        width="1040"
+                        height="12"
+                        fill="#c87020"
+                        opacity="0.10"
+                        rx="6"
+                    />
+                    <rect
+                        x="400"
+                        y="673"
+                        width="640"
+                        height="14"
+                        fill="#d88030"
+                        opacity="0.12"
+                        rx="7"
+                    />
+                </g>
 
-  <!-- STARS (upper sky) -->
-  <g fill="#3a3565">
-    <circle cx="112"  cy="68"  r="0.9" opacity=".88"/><circle cx="240"  cy="44"  r="0.7" opacity=".78"/>
-    <circle cx="382"  cy="88"  r="0.8" opacity=".72"/><circle cx="495"  cy="36"  r="0.9" opacity=".68"/>
-    <circle cx="655"  cy="60"  r="0.7" opacity=".82"/><circle cx="778"  cy="42"  r="0.8" opacity=".75"/>
-    <circle cx="912"  cy="78"  r="0.7" opacity=".70"/><circle cx="1048" cy="50"  r="0.9" opacity=".78"/>
-    <circle cx="1195" cy="66"  r="0.7" opacity=".72"/><circle cx="1358" cy="46"  r="0.8" opacity=".65"/>
-    <circle cx="168"  cy="135" r="0.6" opacity=".52"/><circle cx="1048" cy="122" r="0.6" opacity=".48"/>
-    <circle cx="558"  cy="108" r="0.6" opacity=".42"/><circle cx="880"  cy="105" r="0.5" opacity=".38"/>
-    <circle cx="330"  cy="155" r="0.5" opacity=".35"/><circle cx="1120" cy="148" r="0.5" opacity=".32"/>
-  </g>
+                <!-- STARS (upper sky) -->
+                <g fill="#3a3565">
+                    <circle cx="112" cy="68" r="0.9" opacity=".88" />
+                    <circle cx="240" cy="44" r="0.7" opacity=".78" />
+                    <circle cx="382" cy="88" r="0.8" opacity=".72" />
+                    <circle cx="495" cy="36" r="0.9" opacity=".68" />
+                    <circle cx="655" cy="60" r="0.7" opacity=".82" />
+                    <circle cx="778" cy="42" r="0.8" opacity=".75" />
+                    <circle cx="912" cy="78" r="0.7" opacity=".70" />
+                    <circle cx="1048" cy="50" r="0.9" opacity=".78" />
+                    <circle cx="1195" cy="66" r="0.7" opacity=".72" />
+                    <circle cx="1358" cy="46" r="0.8" opacity=".65" />
+                    <circle cx="168" cy="135" r="0.6" opacity=".52" />
+                    <circle cx="1048" cy="122" r="0.6" opacity=".48" />
+                    <circle cx="558" cy="108" r="0.6" opacity=".42" />
+                    <circle cx="880" cy="105" r="0.5" opacity=".38" />
+                    <circle cx="330" cy="155" r="0.5" opacity=".35" />
+                    <circle cx="1120" cy="148" r="0.5" opacity=".32" />
+                </g>
 
-  <!-- CLOUDS — layered cloud banks and wisps -->
-  <!-- Upper left cloud bank -->
-  <ellipse cx="140" cy="168" rx="95"  ry="22" fill="#1c1940" opacity=".18"/>
-  <ellipse cx="175" cy="158" rx="65"  ry="14" fill="#1c1940" opacity=".12"/>
-  <path d="M55,175 C90,158 145,162 210,175"  stroke="#1f1d42" stroke-width="2.5" fill="none" opacity=".32"/>
-  <path d="M70,185 C108,172 158,176 218,186"  stroke="#1f1d42" stroke-width="1.5" fill="none" opacity=".18"/>
-  <path d="M30,195 C68,183 115,187 165,198"   stroke="#1f1d42" stroke-width="1.2" fill="none" opacity=".14"/>
+                <!-- CLOUDS — layered cloud banks and wisps -->
+                <!-- Upper left cloud bank -->
+                <ellipse
+                    cx="140"
+                    cy="168"
+                    rx="95"
+                    ry="22"
+                    fill="#1c1940"
+                    opacity=".18"
+                />
+                <ellipse
+                    cx="175"
+                    cy="158"
+                    rx="65"
+                    ry="14"
+                    fill="#1c1940"
+                    opacity=".12"
+                />
+                <path
+                    d="M55,175 C90,158 145,162 210,175"
+                    stroke="#1f1d42"
+                    stroke-width="2.5"
+                    fill="none"
+                    opacity=".32"
+                />
+                <path
+                    d="M70,185 C108,172 158,176 218,186"
+                    stroke="#1f1d42"
+                    stroke-width="1.5"
+                    fill="none"
+                    opacity=".18"
+                />
+                <path
+                    d="M30,195 C68,183 115,187 165,198"
+                    stroke="#1f1d42"
+                    stroke-width="1.2"
+                    fill="none"
+                    opacity=".14"
+                />
 
-  <!-- Upper right cloud bank -->
-  <ellipse cx="1300" cy="155" rx="105" ry="24" fill="#1c1940" opacity=".16"/>
-  <ellipse cx="1265" cy="145" rx="70"  ry="15" fill="#1c1940" opacity=".10"/>
-  <path d="M1222,162 C1262,147 1318,151 1385,162" stroke="#1f1d42" stroke-width="2.5" fill="none" opacity=".30"/>
-  <path d="M1230,172 C1268,160 1322,165 1388,176" stroke="#1f1d42" stroke-width="1.5" fill="none" opacity=".16"/>
-  <path d="M1240,182 C1275,172 1325,176 1380,186" stroke="#1f1d42" stroke-width="1.2" fill="none" opacity=".12"/>
+                <!-- Upper right cloud bank -->
+                <ellipse
+                    cx="1300"
+                    cy="155"
+                    rx="105"
+                    ry="24"
+                    fill="#1c1940"
+                    opacity=".16"
+                />
+                <ellipse
+                    cx="1265"
+                    cy="145"
+                    rx="70"
+                    ry="15"
+                    fill="#1c1940"
+                    opacity=".10"
+                />
+                <path
+                    d="M1222,162 C1262,147 1318,151 1385,162"
+                    stroke="#1f1d42"
+                    stroke-width="2.5"
+                    fill="none"
+                    opacity=".30"
+                />
+                <path
+                    d="M1230,172 C1268,160 1322,165 1388,176"
+                    stroke="#1f1d42"
+                    stroke-width="1.5"
+                    fill="none"
+                    opacity=".16"
+                />
+                <path
+                    d="M1240,182 C1275,172 1325,176 1380,186"
+                    stroke="#1f1d42"
+                    stroke-width="1.2"
+                    fill="none"
+                    opacity=".12"
+                />
 
-  <!-- Mid sky wisps -->
-  <path d="M548,142 C600,130 668,135 728,146"  stroke="#1f1d42" stroke-width="2.2" fill="none" opacity=".20"/>
-  <path d="M562,155 C610,144 672,148 730,158"  stroke="#1f1d42" stroke-width="1.2" fill="none" opacity=".12"/>
-  <!-- Far right wisps -->
-  <path d="M950,180 C1002,168 1065,173 1118,184" stroke="#1f1d42" stroke-width="1.8" fill="none" opacity=".16"/>
-  <!-- Far left lower wisps -->
-  <path d="M42,245 C88,235 140,240 185,250"    stroke="#1f1d42" stroke-width="1.5" fill="none" opacity=".14"/>
+                <!-- Mid sky wisps -->
+                <path
+                    d="M548,142 C600,130 668,135 728,146"
+                    stroke="#1f1d42"
+                    stroke-width="2.2"
+                    fill="none"
+                    opacity=".20"
+                />
+                <path
+                    d="M562,155 C610,144 672,148 730,158"
+                    stroke="#1f1d42"
+                    stroke-width="1.2"
+                    fill="none"
+                    opacity=".12"
+                />
+                <!-- Far right wisps -->
+                <path
+                    d="M950,180 C1002,168 1065,173 1118,184"
+                    stroke="#1f1d42"
+                    stroke-width="1.8"
+                    fill="none"
+                    opacity=".16"
+                />
+                <!-- Far left lower wisps -->
+                <path
+                    d="M42,245 C88,235 140,240 185,250"
+                    stroke="#1f1d42"
+                    stroke-width="1.5"
+                    fill="none"
+                    opacity=".14"
+                />
 
-  <!-- BIRDS — hamsa wing-arc silhouettes -->
-  <!-- Left flock -->
-  <path d="M282,242 Q294,232 306,242 Q318,232 330,242" stroke="#1c1a38" stroke-width="2"   fill="none" opacity=".80"/>
-  <path d="M340,265 Q350,256 360,265 Q370,256 380,265" stroke="#1c1a38" stroke-width="1.8" fill="none" opacity=".68"/>
-  <path d="M238,278 Q247,270 256,278 Q265,270 274,278" stroke="#1c1a38" stroke-width="1.5" fill="none" opacity=".55"/>
-  <path d="M312,295 Q320,288 328,295 Q336,288 344,295" stroke="#1c1a38" stroke-width="1.3" fill="none" opacity=".42"/>
-  <path d="M260,318 Q267,312 274,318 Q281,312 288,318" stroke="#1c1a38" stroke-width="1.1" fill="none" opacity=".32"/>
-  <!-- Right flock -->
-  <path d="M1010,220 Q1022,210 1034,220 Q1046,210 1058,220" stroke="#1c1a38" stroke-width="2"   fill="none" opacity=".75"/>
-  <path d="M1065,248 Q1074,240 1083,248 Q1092,240 1101,248" stroke="#1c1a38" stroke-width="1.8" fill="none" opacity=".62"/>
-  <path d="M960,265 Q968,258 976,265 Q984,258 992,265"   stroke="#1c1a38" stroke-width="1.5" fill="none" opacity=".50"/>
-  <path d="M1040,290 Q1047,284 1054,290 Q1061,284 1068,290" stroke="#1c1a38" stroke-width="1.2" fill="none" opacity=".38"/>
-  <!-- Lone bird near sun -->
-  <path d="M692,375 Q700,367 708,375 Q716,367 724,375" stroke="#1c1a38" stroke-width="1.4" fill="none" opacity=".45"/>
+                <!-- BIRDS — hamsa wing-arc silhouettes -->
+                <!-- Left flock -->
+                <path
+                    d="M282,242 Q294,232 306,242 Q318,232 330,242"
+                    stroke="#1c1a38"
+                    stroke-width="2"
+                    fill="none"
+                    opacity=".80"
+                />
+                <path
+                    d="M340,265 Q350,256 360,265 Q370,256 380,265"
+                    stroke="#1c1a38"
+                    stroke-width="1.8"
+                    fill="none"
+                    opacity=".68"
+                />
+                <path
+                    d="M238,278 Q247,270 256,278 Q265,270 274,278"
+                    stroke="#1c1a38"
+                    stroke-width="1.5"
+                    fill="none"
+                    opacity=".55"
+                />
+                <path
+                    d="M312,295 Q320,288 328,295 Q336,288 344,295"
+                    stroke="#1c1a38"
+                    stroke-width="1.3"
+                    fill="none"
+                    opacity=".42"
+                />
+                <path
+                    d="M260,318 Q267,312 274,318 Q281,312 288,318"
+                    stroke="#1c1a38"
+                    stroke-width="1.1"
+                    fill="none"
+                    opacity=".32"
+                />
+                <!-- Right flock -->
+                <path
+                    d="M1010,220 Q1022,210 1034,220 Q1046,210 1058,220"
+                    stroke="#1c1a38"
+                    stroke-width="2"
+                    fill="none"
+                    opacity=".75"
+                />
+                <path
+                    d="M1065,248 Q1074,240 1083,248 Q1092,240 1101,248"
+                    stroke="#1c1a38"
+                    stroke-width="1.8"
+                    fill="none"
+                    opacity=".62"
+                />
+                <path
+                    d="M960,265 Q968,258 976,265 Q984,258 992,265"
+                    stroke="#1c1a38"
+                    stroke-width="1.5"
+                    fill="none"
+                    opacity=".50"
+                />
+                <path
+                    d="M1040,290 Q1047,284 1054,290 Q1061,284 1068,290"
+                    stroke="#1c1a38"
+                    stroke-width="1.2"
+                    fill="none"
+                    opacity=".38"
+                />
+                <!-- Lone bird near sun -->
+                <path
+                    d="M692,375 Q700,367 708,375 Q716,367 724,375"
+                    stroke="#1c1a38"
+                    stroke-width="1.4"
+                    fill="none"
+                    opacity=".45"
+                />
 
-  <!-- ── FAR MOUNTAINS — jagged natural silhouette ── -->
-  <path d="
+                <!-- ── FAR MOUNTAINS — jagged natural silhouette ── -->
+                <path
+                    d="
     M0,748 L58,715 L88,728 L115,700 L145,716 L168,694
     L200,708 L228,685 L255,700 L282,676 L310,692
     L338,668 L365,684 L392,662 L420,677 L448,655
@@ -351,10 +1212,13 @@
     L1134,692 L1162,676 L1190,700 L1218,685 L1245,708
     L1272,694 L1300,716 L1328,700 L1356,728 L1384,714 L1440,730
     L1440,900 L0,900 Z
-  " fill="#0e0c21"/>
+  "
+                    fill="#0e0c21"
+                />
 
-  <!-- NEAR MOUNTAINS — more solid, with smaller rocks -->
-  <path d="
+                <!-- NEAR MOUNTAINS — more solid, with smaller rocks -->
+                <path
+                    d="
     M0,796 L48,774 L82,786 L115,762 L150,778 L182,756
     L215,770 L248,750 L280,764 L312,745 L345,760
     L378,742 L410,756 L442,738 L474,752 L506,736
@@ -365,410 +1229,1171 @@
     L1064,742 L1096,760 L1128,745 L1160,770 L1192,756
     L1224,778 L1256,762 L1288,786 L1320,770 L1352,784 L1390,772 L1440,788
     L1440,900 L0,900 Z
-  " fill="#0c0a1e"/>
+  "
+                    fill="#0c0a1e"
+                />
 
-  <!-- Small scattered boulders at mountain base -->
-  <ellipse cx="440"  cy="790" rx="20" ry="10" fill="#0c0a1e"/>
-  <ellipse cx="520"  cy="795" rx="14" ry="8"  fill="#0c0a1e"/>
-  <ellipse cx="920"  cy="788" rx="18" ry="9"  fill="#0c0a1e"/>
-  <ellipse cx="1010" cy="793" rx="12" ry="7"  fill="#0c0a1e"/>
-  <ellipse cx="350"  cy="800" rx="10" ry="6"  fill="#0b091d"/>
-  <ellipse cx="1100" cy="798" rx="15" ry="8"  fill="#0b091d"/>
+                <!-- Small scattered boulders at mountain base -->
+                <ellipse cx="440" cy="790" rx="20" ry="10" fill="#0c0a1e" />
+                <ellipse cx="520" cy="795" rx="14" ry="8" fill="#0c0a1e" />
+                <ellipse cx="920" cy="788" rx="18" ry="9" fill="#0c0a1e" />
+                <ellipse cx="1010" cy="793" rx="12" ry="7" fill="#0c0a1e" />
+                <ellipse cx="350" cy="800" rx="10" ry="6" fill="#0b091d" />
+                <ellipse cx="1100" cy="798" rx="15" ry="8" fill="#0b091d" />
 
-  <!-- ── SIDE TREES (mango left, secondary right) ── -->
-  <!-- Left: mango tree -->
-  <g transform="translate(248,840)" fill="#090819">
-    <rect x="-7"  y="-90" width="14" height="90"/>
-    <ellipse cx="0"   cy="-138" rx="62" ry="55"/>
-    <ellipse cx="-40" cy="-116" rx="36" ry="40"/>
-    <ellipse cx="42"  cy="-112" rx="34" ry="38"/>
-    <ellipse cx="-12" cy="-165" rx="30" ry="32"/>
-    <ellipse cx="18"  cy="-170" rx="27" ry="29"/>
-  </g>
-  <!-- Far left small -->
-  <g transform="translate(108,858)" fill="#08071a">
-    <rect x="-4" y="-58" width="8" height="58"/>
-    <ellipse cx="0" cy="-90" rx="38" ry="40"/>
-    <ellipse cx="-24" cy="-74" rx="22" ry="28"/>
-    <ellipse cx="22" cy="-70" rx="20" ry="25"/>
-  </g>
+                <!-- ── SIDE TREES (mango left, secondary right) ── -->
+                <!-- Left: mango tree -->
+                <g transform="translate(248,840)" fill="#090819">
+                    <rect x="-7" y="-90" width="14" height="90" />
+                    <ellipse cx="0" cy="-138" rx="62" ry="55" />
+                    <ellipse cx="-40" cy="-116" rx="36" ry="40" />
+                    <ellipse cx="42" cy="-112" rx="34" ry="38" />
+                    <ellipse cx="-12" cy="-165" rx="30" ry="32" />
+                    <ellipse cx="18" cy="-170" rx="27" ry="29" />
+                </g>
+                <!-- Far left small -->
+                <g transform="translate(108,858)" fill="#08071a">
+                    <rect x="-4" y="-58" width="8" height="58" />
+                    <ellipse cx="0" cy="-90" rx="38" ry="40" />
+                    <ellipse cx="-24" cy="-74" rx="22" ry="28" />
+                    <ellipse cx="22" cy="-70" rx="20" ry="25" />
+                </g>
 
-  <!-- Right: mango/neem tree -->
-  <g transform="translate(1198,842)" fill="#090819">
-    <rect x="-7"  y="-85" width="14" height="85"/>
-    <ellipse cx="0"   cy="-132" rx="60" ry="54"/>
-    <ellipse cx="-38" cy="-112" rx="35" ry="38"/>
-    <ellipse cx="40"  cy="-108" rx="32" ry="36"/>
-    <ellipse cx="-8"  cy="-160" rx="28" ry="30"/>
-    <ellipse cx="15"  cy="-165" rx="25" ry="28"/>
-  </g>
-  <!-- Far right small -->
-  <g transform="translate(1340,860)" fill="#08071a">
-    <rect x="-4" y="-52" width="8" height="52"/>
-    <ellipse cx="0" cy="-82" rx="35" ry="36"/>
-    <ellipse cx="-22" cy="-68" rx="20" ry="25"/>
-  </g>
+                <!-- Right: mango/neem tree -->
+                <g transform="translate(1198,842)" fill="#090819">
+                    <rect x="-7" y="-85" width="14" height="85" />
+                    <ellipse cx="0" cy="-132" rx="60" ry="54" />
+                    <ellipse cx="-38" cy="-112" rx="35" ry="38" />
+                    <ellipse cx="40" cy="-108" rx="32" ry="36" />
+                    <ellipse cx="-8" cy="-160" rx="28" ry="30" />
+                    <ellipse cx="15" cy="-165" rx="25" ry="28" />
+                </g>
+                <!-- Far right small -->
+                <g transform="translate(1340,860)" fill="#08071a">
+                    <rect x="-4" y="-52" width="8" height="52" />
+                    <ellipse cx="0" cy="-82" rx="35" ry="36" />
+                    <ellipse cx="-22" cy="-68" rx="20" ry="25" />
+                </g>
 
-  <!-- ── PEEPAL / BANYAN TREE — centered, wide dome crown, aerial prop roots ── -->
-  <!-- Base at y=920 (off-screen). Crown spans ±220 wide, tops at scene y≈630 (sun glow). -->
-  <g id="peepalTree" transform="translate(720,920)" fill="#09081e">
+                <!-- ── PEEPAL / BANYAN TREE — centered, wide dome crown, aerial prop roots ── -->
+                <!-- Base at y=920 (off-screen). Crown spans ±220 wide, tops at scene y≈630 (sun glow). -->
+                <g
+                    id="peepalTree"
+                    transform="translate(720,920)"
+                    fill="#09081e"
+                >
+                    <!-- ── TRUNK — organic, slightly asymmetric, banyan character ── -->
+                    <path
+                        d="M-18,0 C-20,-44 -16,-90 -10,-132 C-6,-158 -2,-175 0,-185 C2,-175 6,-158 10,-132 C16,-90 20,-44 18,0 Z"
+                    />
+                    <!-- Bark grooves -->
+                    <line
+                        x1="-5"
+                        y1="-55"
+                        x2="-8"
+                        y2="-168"
+                        stroke="#121030"
+                        stroke-width="1.5"
+                        opacity=".32"
+                    />
+                    <line
+                        x1=" 5"
+                        y1="-55"
+                        x2=" 8"
+                        y2="-168"
+                        stroke="#121030"
+                        stroke-width="1.5"
+                        opacity=".32"
+                    />
+                    <!-- Root buttresses / surface roots -->
+                    <path
+                        d="M-18,0 C-28,-22 -40,-17 -50,-30 C-38,-16 -20,-12 -18,0 Z"
+                    />
+                    <path
+                        d="M 18,0 C 28,-22  40,-17  50,-30 C 38,-16  20,-12  18,0 Z"
+                    />
+                    <path
+                        d="M-12,0 C-18,-14 -30,-11 -36,-21 C-26,-10 -14,-7 -12,0 Z"
+                    />
+                    <path
+                        d="M 12,0 C 18,-14  30,-11  36,-21 C 26,-10  14,-7  12,0 Z"
+                    />
 
-    <!-- ── TRUNK — organic, slightly asymmetric, banyan character ── -->
-    <path d="M-18,0 C-20,-44 -16,-90 -10,-132 C-6,-158 -2,-175 0,-185 C2,-175 6,-158 10,-132 C16,-90 20,-44 18,0 Z"/>
-    <!-- Bark grooves -->
-    <line x1="-5" y1="-55"  x2="-8"  y2="-168" stroke="#121030" stroke-width="1.5" opacity=".32"/>
-    <line x1=" 5" y1="-55"  x2=" 8"  y2="-168" stroke="#121030" stroke-width="1.5" opacity=".32"/>
-    <!-- Root buttresses / surface roots -->
-    <path d="M-18,0 C-28,-22 -40,-17 -50,-30 C-38,-16 -20,-12 -18,0 Z"/>
-    <path d="M 18,0 C 28,-22  40,-17  50,-30 C 38,-16  20,-12  18,0 Z"/>
-    <path d="M-12,0 C-18,-14 -30,-11 -36,-21 C-26,-10 -14,-7 -12,0 Z"/>
-    <path d="M 12,0 C 18,-14  30,-11  36,-21 C 26,-10  14,-7  12,0 Z"/>
+                    <!-- ── TRUNK SPLITS at y=-125 ── -->
+                    <path
+                        d="M-5,-125 C-28,-138 -60,-145 -85,-158"
+                        stroke="#09081e"
+                        stroke-width="20"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 5,-125 C 28,-138  60,-145  85,-158"
+                        stroke="#09081e"
+                        stroke-width="20"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
 
-    <!-- ── TRUNK SPLITS at y=-125 ── -->
-    <path d="M-5,-125 C-28,-138 -60,-145 -85,-158"  stroke="#09081e" stroke-width="20" stroke-linecap="round" fill="none"/>
-    <path d="M 5,-125 C 28,-138  60,-145  85,-158"  stroke="#09081e" stroke-width="20" stroke-linecap="round" fill="none"/>
+                    <!-- ── LEFT MAIN CANOPY BRANCH ── -->
+                    <path
+                        d="M-72,-152 C-112,-165 -155,-162 -200,-178"
+                        stroke="#09081e"
+                        stroke-width="14"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <!-- Left outer extension -->
+                    <path
+                        d="M-168,-172 C-192,-162 -215,-158 -232,-170"
+                        stroke="#09081e"
+                        stroke-width="9"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <!-- Left mid sub-branch (drooping, peepal character) -->
+                    <path
+                        d="M-125,-165 C-140,-152 -158,-148 -172,-158"
+                        stroke="#09081e"
+                        stroke-width="8"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <!-- Left inner sub-branch -->
+                    <path
+                        d="M-88,-158 C-100,-144 -115,-140 -128,-150"
+                        stroke="#09081e"
+                        stroke-width="7"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <!-- Left close sub-branch -->
+                    <path
+                        d="M-55,-148 C-65,-134 -78,-130 -90,-140"
+                        stroke="#09081e"
+                        stroke-width="6"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
 
-    <!-- ── LEFT MAIN CANOPY BRANCH ── -->
-    <path d="M-72,-152 C-112,-165 -155,-162 -200,-178" stroke="#09081e" stroke-width="14" stroke-linecap="round" fill="none"/>
-    <!-- Left outer extension -->
-    <path d="M-168,-172 C-192,-162 -215,-158 -232,-170" stroke="#09081e" stroke-width="9"  stroke-linecap="round" fill="none"/>
-    <!-- Left mid sub-branch (drooping, peepal character) -->
-    <path d="M-125,-165 C-140,-152 -158,-148 -172,-158" stroke="#09081e" stroke-width="8"  stroke-linecap="round" fill="none"/>
-    <!-- Left inner sub-branch -->
-    <path d="M-88,-158 C-100,-144 -115,-140 -128,-150" stroke="#09081e" stroke-width="7"  stroke-linecap="round" fill="none"/>
-    <!-- Left close sub-branch -->
-    <path d="M-55,-148 C-65,-134 -78,-130 -90,-140"   stroke="#09081e" stroke-width="6"  stroke-linecap="round" fill="none"/>
+                    <!-- ── RIGHT MAIN (mirror) ── -->
+                    <path
+                        d="M 72,-152 C 112,-165  155,-162  200,-178"
+                        stroke="#09081e"
+                        stroke-width="14"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 168,-172 C 192,-162  215,-158  232,-170"
+                        stroke="#09081e"
+                        stroke-width="9"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 125,-165 C 140,-152  158,-148  172,-158"
+                        stroke="#09081e"
+                        stroke-width="8"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 88,-158 C 100,-144  115,-140  128,-150"
+                        stroke="#09081e"
+                        stroke-width="7"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 55,-148 C  65,-134   78,-130   90,-140"
+                        stroke="#09081e"
+                        stroke-width="6"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
 
-    <!-- ── RIGHT MAIN (mirror) ── -->
-    <path d="M 72,-152 C 112,-165  155,-162  200,-178" stroke="#09081e" stroke-width="14" stroke-linecap="round" fill="none"/>
-    <path d="M 168,-172 C 192,-162  215,-158  232,-170" stroke="#09081e" stroke-width="9"  stroke-linecap="round" fill="none"/>
-    <path d="M 125,-165 C 140,-152  158,-148  172,-158" stroke="#09081e" stroke-width="8"  stroke-linecap="round" fill="none"/>
-    <path d="M 88,-158 C 100,-144  115,-140  128,-150" stroke="#09081e" stroke-width="7"  stroke-linecap="round" fill="none"/>
-    <path d="M 55,-148 C  65,-134   78,-130   90,-140" stroke="#09081e" stroke-width="6"  stroke-linecap="round" fill="none"/>
+                    <!-- ── CENTER UPPER BRANCHES ── -->
+                    <path
+                        d="M0,-185 C-16,-202 -22,-228 -18,-252"
+                        stroke="#09081e"
+                        stroke-width="9"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M0,-185 C 16,-202  22,-228  18,-252"
+                        stroke="#09081e"
+                        stroke-width="9"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M-14,-225 C-26,-240 -30,-258 -26,-275"
+                        stroke="#09081e"
+                        stroke-width="6"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 14,-225 C 26,-240  30,-258  26,-275"
+                        stroke="#09081e"
+                        stroke-width="6"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M0,-252 C-10,-265 -12,-280 -10,-295"
+                        stroke="#09081e"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M0,-252 C 10,-265  12,-280  10,-295"
+                        stroke="#09081e"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
 
-    <!-- ── CENTER UPPER BRANCHES ── -->
-    <path d="M0,-185 C-16,-202 -22,-228 -18,-252"  stroke="#09081e" stroke-width="9"  stroke-linecap="round" fill="none"/>
-    <path d="M0,-185 C 16,-202  22,-228  18,-252"  stroke="#09081e" stroke-width="9"  stroke-linecap="round" fill="none"/>
-    <path d="M-14,-225 C-26,-240 -30,-258 -26,-275" stroke="#09081e" stroke-width="6"  stroke-linecap="round" fill="none"/>
-    <path d="M 14,-225 C 26,-240  30,-258  26,-275" stroke="#09081e" stroke-width="6"  stroke-linecap="round" fill="none"/>
-    <path d="M0,-252 C-10,-265 -12,-280 -10,-295"  stroke="#09081e" stroke-width="4"  stroke-linecap="round" fill="none"/>
-    <path d="M0,-252 C 10,-265  12,-280  10,-295"  stroke="#09081e" stroke-width="4"  stroke-linecap="round" fill="none"/>
+                    <!-- ── AERIAL PROP ROOTS (banyan signature) ── -->
+                    <!-- Hanging from left branch, reaching toward foreground (y=−45 ≈ scene y=875) -->
+                    <path
+                        d="M-65,-150  C-67,-112 -63,-70 -65,-45"
+                        stroke="#09081e"
+                        stroke-width="4.5"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M-98,-162  C-100,-122 -96,-78 -98,-45"
+                        stroke="#09081e"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M-130,-168 C-132,-128 -128,-82 -130,-45"
+                        stroke="#09081e"
+                        stroke-width="3.5"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M-162,-174 C-164,-134 -160,-88 -162,-45"
+                        stroke="#09081e"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M-192,-178 C-194,-140 -190,-95 -192,-45"
+                        stroke="#09081e"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <!-- Base thickening of prop roots (contact with earth) -->
+                    <ellipse cx="-65" cy="-43" rx="5" ry="3" />
+                    <ellipse cx="-98" cy="-43" rx="4.5" ry="2.8" />
+                    <ellipse cx="-130" cy="-43" rx="4" ry="2.5" />
+                    <ellipse cx="-162" cy="-43" rx="3.5" ry="2.2" />
+                    <ellipse cx="-192" cy="-43" rx="3" ry="2" />
+                    <!-- Right prop roots (mirror) -->
+                    <path
+                        d="M 65,-150  C 67,-112  63,-70  65,-45"
+                        stroke="#09081e"
+                        stroke-width="4.5"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 98,-162  C 100,-122  96,-78  98,-45"
+                        stroke="#09081e"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 130,-168 C 132,-128 128,-82 130,-45"
+                        stroke="#09081e"
+                        stroke-width="3.5"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 162,-174 C 164,-134 160,-88 162,-45"
+                        stroke="#09081e"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M 192,-178 C 194,-140 190,-95 192,-45"
+                        stroke="#09081e"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <ellipse cx="65" cy="-43" rx="5" ry="3" />
+                    <ellipse cx="98" cy="-43" rx="4.5" ry="2.8" />
+                    <ellipse cx="130" cy="-43" rx="4" ry="2.5" />
+                    <ellipse cx="162" cy="-43" rx="3.5" ry="2.2" />
+                    <ellipse cx="192" cy="-43" rx="3" ry="2" />
 
-    <!-- ── AERIAL PROP ROOTS (banyan signature) ── -->
-    <!-- Hanging from left branch, reaching toward foreground (y=−45 ≈ scene y=875) -->
-    <path d="M-65,-150  C-67,-112 -63,-70 -65,-45"   stroke="#09081e" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-    <path d="M-98,-162  C-100,-122 -96,-78 -98,-45"   stroke="#09081e" stroke-width="4"   stroke-linecap="round" fill="none"/>
-    <path d="M-130,-168 C-132,-128 -128,-82 -130,-45" stroke="#09081e" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-    <path d="M-162,-174 C-164,-134 -160,-88 -162,-45" stroke="#09081e" stroke-width="3"   stroke-linecap="round" fill="none"/>
-    <path d="M-192,-178 C-194,-140 -190,-95 -192,-45" stroke="#09081e" stroke-width="3"   stroke-linecap="round" fill="none"/>
-    <!-- Base thickening of prop roots (contact with earth) -->
-    <ellipse cx="-65"  cy="-43" rx="5"   ry="3"/>
-    <ellipse cx="-98"  cy="-43" rx="4.5" ry="2.8"/>
-    <ellipse cx="-130" cy="-43" rx="4"   ry="2.5"/>
-    <ellipse cx="-162" cy="-43" rx="3.5" ry="2.2"/>
-    <ellipse cx="-192" cy="-43" rx="3"   ry="2"/>
-    <!-- Right prop roots (mirror) -->
-    <path d="M 65,-150  C 67,-112  63,-70  65,-45"   stroke="#09081e" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-    <path d="M 98,-162  C 100,-122  96,-78  98,-45"  stroke="#09081e" stroke-width="4"   stroke-linecap="round" fill="none"/>
-    <path d="M 130,-168 C 132,-128 128,-82 130,-45"  stroke="#09081e" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-    <path d="M 162,-174 C 164,-134 160,-88 162,-45"  stroke="#09081e" stroke-width="3"   stroke-linecap="round" fill="none"/>
-    <path d="M 192,-178 C 194,-140 190,-95 192,-45"  stroke="#09081e" stroke-width="3"   stroke-linecap="round" fill="none"/>
-    <ellipse cx="65"   cy="-43" rx="5"   ry="3"/>
-    <ellipse cx="98"   cy="-43" rx="4.5" ry="2.8"/>
-    <ellipse cx="130"  cy="-43" rx="4"   ry="2.5"/>
-    <ellipse cx="162"  cy="-43" rx="3.5" ry="2.2"/>
-    <ellipse cx="192"  cy="-43" rx="3"   ry="2"/>
+                    <!-- ── PEEPAL LEAVES — individual cordate-base drip-tip shapes ── -->
+                    <!-- fill="#120f26": slightly lighter than sky so leaves read as silhouettes -->
 
-    <!-- ── PEEPAL LEAVES — individual cordate-base drip-tip shapes ── -->
-    <!-- fill="#120f26": slightly lighter than sky so leaves read as silhouettes -->
+                    <!-- LEFT OUTER cluster (near far branch ~-210 to -235, y -172 to -195) -->
+                    <use
+                        href="#pl"
+                        transform="translate(-212,-175) rotate(-14)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-222,-184) rotate(-24)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-205,-190) rotate(-8)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-228,-180) rotate(-32)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-200,-196) rotate(-2)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-218,-194) rotate(-20)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-232,-188) rotate(-38)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-196,-200) rotate(4)"
+                        fill="#120f26"
+                    />
 
-    <!-- LEFT OUTER cluster (near far branch ~-210 to -235, y -172 to -195) -->
-    <use href="#pl" transform="translate(-212,-175) rotate(-14)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-222,-184) rotate(-24)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-205,-190) rotate(-8)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(-228,-180) rotate(-32)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-200,-196) rotate(-2)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(-218,-194) rotate(-20)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-232,-188) rotate(-38)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-196,-200) rotate(4)"   fill="#120f26"/>
+                    <!-- LEFT MID cluster (~-160 to -180, y -165 to -185) -->
+                    <use
+                        href="#pl"
+                        transform="translate(-162,-168) rotate(-18)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-172,-176) rotate(-28)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-152,-178) rotate(-10)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-178,-172) rotate(-36)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-148,-184) rotate(-4)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-168,-185) rotate(-24)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-185,-178) rotate(-42)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-142,-190) rotate(3)"
+                        fill="#120f26"
+                    />
 
-    <!-- LEFT MID cluster (~-160 to -180, y -165 to -185) -->
-    <use href="#pl" transform="translate(-162,-168) rotate(-18)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-172,-176) rotate(-28)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-152,-178) rotate(-10)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-178,-172) rotate(-36)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-148,-184) rotate(-4)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(-168,-185) rotate(-24)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-185,-178) rotate(-42)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-142,-190) rotate(3)"   fill="#120f26"/>
+                    <!-- LEFT INNER sub-branch cluster (~-100 to -130, y -148 to -168) -->
+                    <use
+                        href="#pl"
+                        transform="translate(-105,-152) rotate(-20)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-115,-160) rotate(-30)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-98,-162)  rotate(-12)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-122,-156) rotate(-38)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-92,-168)  rotate(-5)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-128,-164) rotate(-25)"
+                        fill="#120f26"
+                    />
 
-    <!-- LEFT INNER sub-branch cluster (~-100 to -130, y -148 to -168) -->
-    <use href="#pl" transform="translate(-105,-152) rotate(-20)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-115,-160) rotate(-30)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-98,-162)  rotate(-12)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-122,-156) rotate(-38)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-92,-168)  rotate(-5)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(-128,-164) rotate(-25)" fill="#120f26"/>
+                    <!-- LEFT CLOSE cluster (~-65 to -88, y -140 to -158) -->
+                    <use
+                        href="#pl"
+                        transform="translate(-68,-142) rotate(-15)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-78,-150) rotate(-25)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-62,-154) rotate(-8)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-84,-147) rotate(-32)"
+                        fill="#120f26"
+                    />
 
-    <!-- LEFT CLOSE cluster (~-65 to -88, y -140 to -158) -->
-    <use href="#pl" transform="translate(-68,-142) rotate(-15)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-78,-150) rotate(-25)" fill="#120f26"/>
-    <use href="#pl" transform="translate(-62,-154) rotate(-8)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(-84,-147) rotate(-32)" fill="#120f26"/>
+                    <!-- RIGHT OUTER (mirror) -->
+                    <use
+                        href="#pl"
+                        transform="translate(212,-175) rotate(14)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(222,-184) rotate(24)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(205,-190) rotate(8)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(228,-180) rotate(32)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(200,-196) rotate(2)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(218,-194) rotate(20)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(232,-188) rotate(38)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(196,-200) rotate(-4)"
+                        fill="#120f26"
+                    />
 
-    <!-- RIGHT OUTER (mirror) -->
-    <use href="#pl" transform="translate(212,-175) rotate(14)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(222,-184) rotate(24)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(205,-190) rotate(8)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(228,-180) rotate(32)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(200,-196) rotate(2)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(218,-194) rotate(20)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(232,-188) rotate(38)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(196,-200) rotate(-4)"  fill="#120f26"/>
+                    <!-- RIGHT MID -->
+                    <use
+                        href="#pl"
+                        transform="translate(162,-168) rotate(18)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(172,-176) rotate(28)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(152,-178) rotate(10)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(178,-172) rotate(36)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(148,-184) rotate(4)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(168,-185) rotate(24)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(185,-178) rotate(42)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(142,-190) rotate(-3)"
+                        fill="#120f26"
+                    />
 
-    <!-- RIGHT MID -->
-    <use href="#pl" transform="translate(162,-168) rotate(18)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(172,-176) rotate(28)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(152,-178) rotate(10)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(178,-172) rotate(36)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(148,-184) rotate(4)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(168,-185) rotate(24)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(185,-178) rotate(42)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(142,-190) rotate(-3)"  fill="#120f26"/>
+                    <!-- RIGHT INNER -->
+                    <use
+                        href="#pl"
+                        transform="translate(105,-152) rotate(20)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(115,-160) rotate(30)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(98,-162)  rotate(12)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(122,-156) rotate(38)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(92,-168)  rotate(5)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(128,-164) rotate(25)"
+                        fill="#120f26"
+                    />
 
-    <!-- RIGHT INNER -->
-    <use href="#pl" transform="translate(105,-152) rotate(20)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(115,-160) rotate(30)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(98,-162)  rotate(12)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(122,-156) rotate(38)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(92,-168)  rotate(5)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(128,-164) rotate(25)"  fill="#120f26"/>
+                    <!-- RIGHT CLOSE -->
+                    <use
+                        href="#pl"
+                        transform="translate(68,-142)  rotate(15)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(78,-150)  rotate(25)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(62,-154)  rotate(8)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(84,-147)  rotate(32)"
+                        fill="#120f26"
+                    />
 
-    <!-- RIGHT CLOSE -->
-    <use href="#pl" transform="translate(68,-142)  rotate(15)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(78,-150)  rotate(25)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(62,-154)  rotate(8)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(84,-147)  rotate(32)"  fill="#120f26"/>
+                    <!-- CENTER UPPER cluster -->
+                    <use
+                        href="#pl"
+                        transform="translate(-20,-258) rotate(-9)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-8,-266)  rotate(-4)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(4,-270)   rotate(2)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(16,-262)  rotate(8)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-28,-252) rotate(-16)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(26,-252)  rotate(15)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(0,-278)   rotate(0)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-36,-244) rotate(-22)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(34,-244)  rotate(20)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-14,-285) rotate(-6)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(12,-283)  rotate(5)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(-42,-238) rotate(-28)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(40,-238)  rotate(26)"
+                        fill="#120f26"
+                    />
+                    <use
+                        href="#pl"
+                        transform="translate(0,-294)   rotate(1)"
+                        fill="#120f26"
+                    />
+                </g>
 
-    <!-- CENTER UPPER cluster -->
-    <use href="#pl" transform="translate(-20,-258) rotate(-9)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(-8,-266)  rotate(-4)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(4,-270)   rotate(2)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(16,-262)  rotate(8)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(-28,-252) rotate(-16)" fill="#120f26"/>
-    <use href="#pl" transform="translate(26,-252)  rotate(15)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(0,-278)   rotate(0)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(-36,-244) rotate(-22)" fill="#120f26"/>
-    <use href="#pl" transform="translate(34,-244)  rotate(20)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(-14,-285) rotate(-6)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(12,-283)  rotate(5)"   fill="#120f26"/>
-    <use href="#pl" transform="translate(-42,-238) rotate(-28)" fill="#120f26"/>
-    <use href="#pl" transform="translate(40,-238)  rotate(26)"  fill="#120f26"/>
-    <use href="#pl" transform="translate(0,-294)   rotate(1)"   fill="#120f26"/>
-  </g>
-
-  <!-- NEAR FOREGROUND HILL -->
-  <path d="
+                <!-- NEAR FOREGROUND HILL -->
+                <path
+                    d="
     M0,875 Q112,852 238,864 Q380,845 505,858 Q612,847 720,853 Q828,847 935,856
     Q1060,845 1198,860 Q1325,848 1440,868
     L1440,900 L0,900 Z
-  " fill="#08071a"/>
-</svg>
+  "
+                    fill="#08071a"
+                />
+            </svg>
 
-  <!-- HERO TEXT -->
-  <div class="hero-content" id="heroContent">
-    <p class="h-eye">Full Stack Developer &nbsp;·&nbsp; IIT Kanpur &nbsp;·&nbsp; Chhattisgarh</p>
-    <h1 class="h-name">Brijesh Chandrakar</h1>
-    <p class="h-san">योगः कर्मसु कौशलम्</p>
-    <p class="h-gls">Excellence in action is yoga &nbsp;—&nbsp; Bhagavad Gita, II.50</p>
-  </div>
+            <!-- HERO TEXT -->
+            <div class="hero-content" id="heroContent">
+                <p class="h-eye">
+                    Software Engineer &nbsp;·&nbsp; IIT Kanpur &nbsp;·&nbsp;
+                    Chhattisgarh
+                </p>
+                <h1 class="h-name">Brijesh Chandrakar</h1>
+                <p class="h-san">योगः कर्मसु कौशलम्</p>
+                <p class="h-gls">
+                    Excellence in action is yoga &nbsp;—&nbsp; Bhagavad Gita,
+                    II.50
+                </p>
+            </div>
 
-  <div class="scroll-cue">
-    <svg width="1" height="52" viewBox="0 0 1 52"><line x1=".5" y1="0" x2=".5" y2="52" stroke="#4e4840" stroke-width="1"/></svg>
-    <span>Descend</span>
-  </div>
-</section>
+            <div class="scroll-cue">
+                <svg width="1" height="52" viewBox="0 0 1 52">
+                    <line
+                        x1=".5"
+                        y1="0"
+                        x2=".5"
+                        y2="52"
+                        stroke="#4e4840"
+                        stroke-width="1"
+                    />
+                </svg>
+                <span>Descend</span>
+            </div>
+        </section>
 
+        <!-- ══ CONTENT ══ -->
+        <div id="content">
+            <!-- ABOUT -->
+            <section id="about">
+                <div class="wrap">
+                    <!-- bg star motif -->
+                    <svg
+                        class="bg-motif"
+                        style="
+                            right: -55px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                        "
+                        width="260"
+                        height="260"
+                        viewBox="0 0 100 100"
+                    >
+                        <polygon
+                            points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35"
+                            fill="none"
+                            stroke="#c49040"
+                            stroke-width=".7"
+                        />
+                        <polygon
+                            points="50,20 57,40 80,40 62,53 69,76 50,63 31,76 38,53 20,40 43,40"
+                            fill="none"
+                            stroke="#c49040"
+                            stroke-width=".4"
+                        />
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="7"
+                            fill="none"
+                            stroke="#c49040"
+                            stroke-width=".4"
+                        />
+                    </svg>
 
-<!-- ══ CONTENT ══ -->
-<div id="content">
+                    <!-- Corner ornaments using shared symbol -->
+                    <svg
+                        class="cor tl"
+                        width="82"
+                        height="82"
+                        viewBox="0 0 82 82"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="opacity: 0.32"
+                    >
+                        <use href="#hcor" />
+                    </svg>
+                    <svg
+                        class="cor tr"
+                        width="82"
+                        height="82"
+                        viewBox="0 0 82 82"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="opacity: 0.32"
+                    >
+                        <use href="#hcor" />
+                    </svg>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="wrap">
-      <!-- bg star motif -->
-      <svg class="bg-motif" style="right:-55px;top:50%;transform:translateY(-50%)" width="260" height="260" viewBox="0 0 100 100">
-        <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" fill="none" stroke="#c49040" stroke-width=".7"/>
-        <polygon points="50,20 57,40 80,40 62,53 69,76 50,63 31,76 38,53 20,40 43,40" fill="none" stroke="#c49040" stroke-width=".4"/>
-        <circle cx="50" cy="50" r="7" fill="none" stroke="#c49040" stroke-width=".4"/>
-      </svg>
+                    <div class="reveal">
+                        <p class="lbl">About</p>
+                        <h2>Born of iron-red hills,<br />shaped by the Gita</h2>
+                    </div>
+                    <div class="stagger">
+                        <p>
+                            I grew up in the small town of
+                            <span class="hl">Dalli Rajhara</span> in
+                            Chhattisgarh — known for its iron ore mines, its
+                            mango groves, and the quiet tempo of life beneath
+                            old temple bells. It is the kind of place where
+                            evening aarti drifts across still air, and where
+                            roots grow deep into the red earth.
+                        </p>
+                        <p>
+                            I now call <span class="hl">Durg</span> home. I
+                            build software — clean, honest systems — and I
+                            completed a B.Tech–M.Tech dual degree from the
+                            <span class="hl"
+                                >Biological Sciences and Bioengineering
+                                department at IIT Kanpur</span
+                            >, where I also published research on metal-binding
+                            motifs in proteins.
+                        </p>
+                        <p>
+                            Beyond code, I am drawn to the deeper questions —
+                            <span class="hl"
+                                >Hindu philosophy, classical literature,
+                                history, culture</span
+                            >. To me, family, nature, health, and cultural
+                            continuity are the foundational pillars of a life
+                            well-lived. Technology, in this view, is never the
+                            destination — only a disciplined means toward
+                            dharma.
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-      <!-- Corner ornaments using shared symbol -->
-      <svg class="cor tl" width="82" height="82" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg" style="opacity:.32"><use href="#hcor"/></svg>
-      <svg class="cor tr" width="82" height="82" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg" style="opacity:.32"><use href="#hcor"/></svg>
+            <!-- DIVIDER -->
+            <div class="div-wrap reveal">
+                <div class="div-line"></div>
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                    <use href="#ldiv" />
+                </svg>
+                <div class="div-line"></div>
+            </div>
 
-      <div class="reveal">
-        <p class="lbl">About</p>
-        <h2>Born of iron-red hills,<br>shaped by the Gita</h2>
-      </div>
-      <div class="stagger">
-        <p>I grew up in the small town of <span class="hl">Dalli Rajhara</span> in Chhattisgarh — known for its iron ore mines, its mango groves, and the quiet tempo of life beneath old temple bells. It is the kind of place where evening aarti drifts across still air, and where roots grow deep into the red earth.</p>
-        <p>I now call <span class="hl">Durg</span> home. I build software — clean, honest systems — and I completed a B.Tech–M.Tech dual degree from the <span class="hl">Biological Sciences and Bioengineering department at IIT Kanpur</span>, where I also published research on metal-binding motifs in proteins.</p>
-        <p>Beyond code, I am drawn to the deeper questions — <span class="hl">Hindu philosophy, classical literature, history, culture</span>. To me, family, nature, health, and cultural continuity are the foundational pillars of a life well-lived. Technology, in this view, is never the destination — only a disciplined means toward dharma.</p>
-      </div>
-    </div>
-  </section>
+            <!-- WORK -->
+            <section id="work">
+                <div class="wrap">
+                    <!-- bg tree motif -->
+                    <svg
+                        class="bg-motif"
+                        style="left: -75px; top: 35%"
+                        width="200"
+                        height="280"
+                        viewBox="0 0 65 170"
+                    >
+                        <rect
+                            x="28"
+                            y="80"
+                            width="9"
+                            height="90"
+                            fill="#c49040"
+                        />
+                        <ellipse
+                            cx="32"
+                            cy="65"
+                            rx="30"
+                            ry="46"
+                            fill="#c49040"
+                        />
+                        <ellipse
+                            cx="10"
+                            cy="78"
+                            rx="18"
+                            ry="30"
+                            fill="#c49040"
+                        />
+                        <ellipse
+                            cx="54"
+                            cy="76"
+                            rx="16"
+                            ry="28"
+                            fill="#c49040"
+                        />
+                    </svg>
 
-  <!-- DIVIDER -->
-  <div class="div-wrap reveal">
-    <div class="div-line"></div>
-    <svg width="32" height="32" viewBox="0 0 32 32"><use href="#ldiv"/></svg>
-    <div class="div-line"></div>
-  </div>
+                    <svg
+                        class="cor tl"
+                        width="82"
+                        height="82"
+                        viewBox="0 0 82 82"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="opacity: 0.32"
+                    >
+                        <use href="#hcor" />
+                    </svg>
+                    <svg
+                        class="cor tr"
+                        width="82"
+                        height="82"
+                        viewBox="0 0 82 82"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="opacity: 0.32"
+                    >
+                        <use href="#hcor" />
+                    </svg>
 
-  <!-- WORK -->
-  <section id="work">
-    <div class="wrap">
-      <!-- bg tree motif -->
-      <svg class="bg-motif" style="left:-75px;top:35%;" width="200" height="280" viewBox="0 0 65 170">
-        <rect x="28" y="80"  width="9" height="90"  fill="#c49040"/>
-        <ellipse cx="32" cy="65" rx="30" ry="46"   fill="#c49040"/>
-        <ellipse cx="10" cy="78" rx="18" ry="30"   fill="#c49040"/>
-        <ellipse cx="54" cy="76" rx="16" ry="28"   fill="#c49040"/>
-      </svg>
+                    <div class="reveal">
+                        <p class="lbl">Work</p>
+                        <h2>
+                            Craft in the full-stack,<br />curiosity in the lab
+                        </h2>
+                    </div>
+                    <div class="stagger">
+                        <p>
+                            I build software at
+                            <span class="hl">Hardskills</span> — products at the
+                            intersection of learning and human capability, built
+                            on React and Django. I care about systems that are
+                            purposeful and leave the user more capable than
+                            before they arrived.
+                        </p>
+                        <p>
+                            My academic journey began in biology — the precise
+                            world of protein structures and biochemical logic —
+                            before finding its second form in engineering. The
+                            paper I published at IIT Kanpur on
+                            <span class="hl"
+                                >metal-binding motifs in proteins</span
+                            >
+                            taught me something the Gita had already said: that
+                            attention, sustained and undivided, is itself a form
+                            of yoga.
+                        </p>
+                        <p>
+                            I am also keenly aware of the psychological and
+                            societal weight technology carries. A tool that does
+                            not serve the full human — mind, body, culture — is
+                            a tool not yet complete.
+                        </p>
+                    </div>
+                    <div class="reveal" style="margin-top: 2.8rem">
+                        <p class="lbl" style="margin-bottom: 1.2rem">
+                            Tools of the craft
+                        </p>
+                        <div class="tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Django</span>
+                            <span class="tag">React Native</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-      <svg class="cor tl" width="82" height="82" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg" style="opacity:.32"><use href="#hcor"/></svg>
-      <svg class="cor tr" width="82" height="82" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg" style="opacity:.32"><use href="#hcor"/></svg>
+            <!-- DIVIDER -->
+            <div class="div-wrap reveal">
+                <div class="div-line"></div>
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                    <use href="#ldiv" />
+                </svg>
+                <div class="div-line"></div>
+            </div>
 
-      <div class="reveal">
-        <p class="lbl">Work</p>
-        <h2>Craft in the full-stack,<br>curiosity in the lab</h2>
-      </div>
-      <div class="stagger">
-        <p>I build software at <span class="hl">Hardskills</span> — products at the intersection of learning and human capability, built on React and Django. I care about systems that are purposeful and leave the user more capable than before they arrived.</p>
-        <p>My academic journey began in biology — the precise world of protein structures and biochemical logic — before finding its second form in engineering. The paper I published at IIT Kanpur on <span class="hl">metal-binding motifs in proteins</span> taught me something the Gita had already said: that attention, sustained and undivided, is itself a form of yoga.</p>
-        <p>I am also keenly aware of the psychological and societal weight technology carries. A tool that does not serve the full human — mind, body, culture — is a tool not yet complete.</p>
-      </div>
-      <div class="reveal" style="margin-top:2.8rem;">
-        <p class="lbl" style="margin-bottom:1.2rem;">Tools of the craft</p>
-        <div class="tags">
-          <span class="tag">React</span>
-          <span class="tag">Django</span>
-          <span class="tag">React Native</span>
-          <span class="tag">Python</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">TypeScript</span>
+            <!-- PROJECT -->
+            <section id="project">
+                <div class="wrap">
+                    <svg
+                        class="cor tl"
+                        width="82"
+                        height="82"
+                        viewBox="0 0 82 82"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="opacity: 0.32"
+                    >
+                        <use href="#hcor" />
+                    </svg>
+                    <svg
+                        class="cor tr"
+                        width="82"
+                        height="82"
+                        viewBox="0 0 82 82"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="opacity: 0.32"
+                    >
+                        <use href="#hcor" />
+                    </svg>
+
+                    <div class="reveal">
+                        <p class="lbl">Made</p>
+                        <h2>Engineering Notes</h2>
+                    </div>
+                    <div class="reveal">
+                        <div class="p-card">
+                            <svg
+                                class="cor tl"
+                                style="
+                                    width: 44px;
+                                    height: 44px;
+                                    top: 0;
+                                    left: 0;
+                                    opacity: 0.22;
+                                "
+                                viewBox="0 0 82 82"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <use href="#hcor" />
+                            </svg>
+                            <svg
+                                class="cor br"
+                                style="
+                                    width: 44px;
+                                    height: 44px;
+                                    bottom: 0;
+                                    right: 0;
+                                    opacity: 0.22;
+                                "
+                                viewBox="0 0 82 82"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <use href="#hcor" />
+                            </svg>
+                            <p class="p-name">
+                                A Structured Knowledge Base<br />for Software
+                                Engineering
+                            </p>
+                            <p class="p-desc">
+                                Notes distilled from practice — patterns,
+                                principles, and mental models gathered across
+                                years of building software. Written as one would
+                                carve into stone: with the intention that it
+                                endure and be of use to those who come after.
+                            </p>
+                            <a
+                                class="p-link"
+                                href="https://brijesh-engineering-notes.brijeshchandrakar.workers.dev"
+                                target="_blank"
+                                rel="noopener"
+                                >Visit the notes &nbsp;→</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DIVIDER -->
+            <div class="div-wrap reveal">
+                <div class="div-line"></div>
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                    <use href="#ldiv" />
+                </svg>
+                <div class="div-line"></div>
+            </div>
+
+            <!-- BEYOND CODE -->
+            <section id="beyond">
+                <div class="wrap">
+                    <!-- Himalayan peak motif -->
+                    <svg
+                        class="bg-motif"
+                        style="right: -45px; bottom: 14%"
+                        width="210"
+                        height="210"
+                        viewBox="0 0 100 100"
+                    >
+                        <path
+                            d="M0,100 L25,38 L45,58 L68,16 L88,50 L100,100 Z"
+                            fill="#c49040"
+                        />
+                    </svg>
+
+                    <svg
+                        class="cor tl"
+                        width="82"
+                        height="82"
+                        viewBox="0 0 82 82"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="opacity: 0.32"
+                    >
+                        <use href="#hcor" />
+                    </svg>
+                    <svg
+                        class="cor tr"
+                        width="82"
+                        height="82"
+                        viewBox="0 0 82 82"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="opacity: 0.32"
+                    >
+                        <use href="#hcor" />
+                    </svg>
+
+                    <div class="reveal">
+                        <p class="lbl">Beyond Code</p>
+                        <h2>The life<br />between the lines</h2>
+                    </div>
+                    <div class="stagger">
+                        <p>
+                            I am an avid trekker with over
+                            <span class="hl"
+                                >ten expeditions in the Himalayas</span
+                            >. There is a particular quality to the silence
+                            above the treeline — the same quality I find in deep
+                            study, in a well-played chess game, or in the rhythm
+                            of a long run. It is the silence of full presence.
+                        </p>
+                        <p>
+                            I read widely — history, economics, the Upanishads,
+                            the Mahabharata, classical literature. I believe the
+                            <span class="hl"
+                                >Hindu philosophical tradition</span
+                            >
+                            offers frameworks of extraordinary depth for
+                            understanding consciousness, society, and the nature
+                            of right action in the world.
+                        </p>
+                        <p>
+                            I also play football, cook, and write — always
+                            searching for the place where
+                            <span class="hl">precision and joy coincide</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
         </div>
-      </div>
-    </div>
-  </section>
+        <!-- /content -->
 
-  <!-- DIVIDER -->
-  <div class="div-wrap reveal">
-    <div class="div-line"></div>
-    <svg width="32" height="32" viewBox="0 0 32 32"><use href="#ldiv"/></svg>
-    <div class="div-line"></div>
-  </div>
+        <!-- ══ FOOTER ══ -->
+        <footer>
+            <div class="f-icon">
+                <!-- Minimal peepal leaf trio -->
+                <svg width="56" height="52" viewBox="0 0 56 52" fill="#201e3a">
+                    <path
+                        d="M28,0 C22,0 18,6 18,14 C18,21 22,27 26,32 L28,36 L30,32 C34,27 38,21 38,14 C38,6 34,0 28,0 Z"
+                    />
+                    <path
+                        d="M12,4 C8,4 5,8 5,14 C5,19 7,24 10,28 L12,31 L14,28 C17,24 19,19 19,14 C19,8 16,4 12,4 Z"
+                        opacity=".5"
+                        transform="rotate(-18 12 18)"
+                    />
+                    <path
+                        d="M44,4 C40,4 37,8 37,14 C37,19 39,24 42,28 L44,31 L46,28 C49,24 51,19 51,14 C51,8 48,4 44,4 Z"
+                        opacity=".5"
+                        transform="rotate(18 44 18)"
+                    />
+                </svg>
+            </div>
+            <p class="f-name">Brijesh Chandrakar</p>
+            <p class="f-san">योगः कर्मसु कौशलम्</p>
+            <p class="f-place">Durg, Chhattisgarh &nbsp;—&nbsp; India</p>
+        </footer>
 
-  <!-- PROJECT -->
-  <section id="project">
-    <div class="wrap">
-      <svg class="cor tl" width="82" height="82" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg" style="opacity:.32"><use href="#hcor"/></svg>
-      <svg class="cor tr" width="82" height="82" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg" style="opacity:.32"><use href="#hcor"/></svg>
+        <script>
+            // ── INTERSECTION OBSERVER ──
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add("in");
+                            io.unobserve(e.target);
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: "0px 0px -48px 0px" },
+            );
+            document
+                .querySelectorAll(".reveal, .stagger")
+                .forEach((el) => io.observe(el));
 
-      <div class="reveal">
-        <p class="lbl">Made</p>
-        <h2>Engineering Notes</h2>
-      </div>
-      <div class="reveal">
-        <div class="p-card">
-          <svg class="cor tl" style="width:44px;height:44px;top:0;left:0;opacity:.22" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg"><use href="#hcor"/></svg>
-          <svg class="cor br" style="width:44px;height:44px;bottom:0;right:0;opacity:.22" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg"><use href="#hcor"/></svg>
-          <p class="p-name">A Structured Knowledge Base<br>for Software Engineering</p>
-          <p class="p-desc">Notes distilled from practice — patterns, principles, and mental models gathered across years of building software. Written as one would carve into stone: with the intention that it endure and be of use to those who come after.</p>
-          <a class="p-link" href="https://brijesh-engineering-notes.brijeshchandrakar.workers.dev" target="_blank" rel="noopener">Visit the notes &nbsp;→</a>
-        </div>
-      </div>
-    </div>
-  </section>
+            // ── HERO PARALLAX + SUN SETTING EFFECT ──
+            const heroContent = document.getElementById("heroContent");
+            const sunG = document.getElementById("sunG");
 
-  <!-- DIVIDER -->
-  <div class="div-wrap reveal">
-    <div class="div-line"></div>
-    <svg width="32" height="32" viewBox="0 0 32 32"><use href="#ldiv"/></svg>
-    <div class="div-line"></div>
-  </div>
+            function onScroll() {
+                const y = window.scrollY;
+                const vh = window.innerHeight;
+                const p = Math.min(1, y / (vh * 0.85)); // 0→1 over 85% of viewport
 
-  <!-- BEYOND CODE -->
-  <section id="beyond">
-    <div class="wrap">
-      <!-- Himalayan peak motif -->
-      <svg class="bg-motif" style="right:-45px;bottom:14%;" width="210" height="210" viewBox="0 0 100 100">
-        <path d="M0,100 L25,38 L45,58 L68,16 L88,50 L100,100 Z" fill="#c49040"/>
-      </svg>
+                // Sun descends below horizon as user scrolls
+                if (sunG) {
+                    sunG.style.transform = `translateY(${p * 95}px)`;
+                    sunG.style.opacity = String(1 - p * 0.88);
+                }
 
-      <svg class="cor tl" width="82" height="82" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg" style="opacity:.32"><use href="#hcor"/></svg>
-      <svg class="cor tr" width="82" height="82" viewBox="0 0 82 82" xmlns="http://www.w3.org/2000/svg" style="opacity:.32"><use href="#hcor"/></svg>
+                // Hero content fades and lifts
+                if (heroContent) {
+                    heroContent.style.opacity = String(
+                        Math.max(0, 1 - p * 1.5),
+                    );
+                    heroContent.style.transform = `translateY(${y * 0.1}px)`;
+                }
+            }
 
-      <div class="reveal">
-        <p class="lbl">Beyond Code</p>
-        <h2>The life<br>between the lines</h2>
-      </div>
-      <div class="stagger">
-        <p>I am an avid trekker with over <span class="hl">ten expeditions in the Himalayas</span>. There is a particular quality to the silence above the treeline — the same quality I find in deep study, in a well-played chess game, or in the rhythm of a long run. It is the silence of full presence.</p>
-        <p>I read widely — history, economics, the Upanishads, the Mahabharata, classical literature. I believe the <span class="hl">Hindu philosophical tradition</span> offers frameworks of extraordinary depth for understanding consciousness, society, and the nature of right action in the world.</p>
-        <p>I also play football, cook, and write — always searching for the place where <span class="hl">precision and joy coincide</span>.</p>
-      </div>
-    </div>
-  </section>
-
-</div><!-- /content -->
-
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div class="f-icon">
-    <!-- Minimal peepal leaf trio -->
-    <svg width="56" height="52" viewBox="0 0 56 52" fill="#201e3a">
-      <path d="M28,0 C22,0 18,6 18,14 C18,21 22,27 26,32 L28,36 L30,32 C34,27 38,21 38,14 C38,6 34,0 28,0 Z"/>
-      <path d="M12,4 C8,4 5,8 5,14 C5,19 7,24 10,28 L12,31 L14,28 C17,24 19,19 19,14 C19,8 16,4 12,4 Z" opacity=".5" transform="rotate(-18 12 18)"/>
-      <path d="M44,4 C40,4 37,8 37,14 C37,19 39,24 42,28 L44,31 L46,28 C49,24 51,19 51,14 C51,8 48,4 44,4 Z" opacity=".5" transform="rotate(18 44 18)"/>
-    </svg>
-  </div>
-  <p class="f-name">Brijesh Chandrakar</p>
-  <p class="f-san">योगः कर्मसु कौशलम्</p>
-  <p class="f-place">Durg, Chhattisgarh &nbsp;—&nbsp; India</p>
-</footer>
-
-<script>
-  // ── INTERSECTION OBSERVER ──
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
-  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
-
-  // ── HERO PARALLAX + SUN SETTING EFFECT ──
-  const heroContent = document.getElementById('heroContent');
-  const sunG        = document.getElementById('sunG');
-
-  function onScroll() {
-    const y   = window.scrollY;
-    const vh  = window.innerHeight;
-    const p   = Math.min(1, y / (vh * 0.85));      // 0→1 over 85% of viewport
-
-    // Sun descends below horizon as user scrolls
-    if (sunG) {
-      sunG.style.transform = `translateY(${p * 95}px)`;
-      sunG.style.opacity   = String(1 - p * 0.88);
-    }
-
-    // Hero content fades and lifts
-    if (heroContent) {
-      heroContent.style.opacity   = String(Math.max(0, 1 - p * 1.5));
-      heroContent.style.transform = `translateY(${y * 0.1}px)`;
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-</script>
-</body>
+            window.addEventListener("scroll", onScroll, { passive: true });
+        </script>
+    </body>
 </html>
